@@ -87,23 +87,28 @@ elLogin.addEventListener("submit" , (e) => {
       userStorage.userEntered = true;
       localStorage.removeItem("userStatus");
       localStorage.setItem("userStatus", JSON.stringify(userStorage));
-      const elBody = document.querySelector("body");
-      elBody.classList.remove("body-black");
+      const elLoginBody = document.querySelector("body");
+      const dayNightStatus = JSON.parse(localStorage.getItem("dayNight"));
+      if(dayNightStatus.dayNight) {
+        elLoginBody.classList.add("body-black");
+        elNight.classList.add("none");
+        elBody.classList.add("body-black");
+        elNavbarName.classList.add("name-white");
+      }else {
+        elLoginBody.classList.remove("body-black");
+        elNight.classList.remove("none");
+        elBody.classList.remove("body-black");
+        elNavbarName.classList.remove("name-white");
+      }
       localStorage.removeItem("titleStatus")
       localStorage.setItem("titleStatus", "Dashboard");
       elTitle.textContent = localStorage.getItem("titleStatus");
     }, 1000);
   }
+  
 });
-
 const elLoginBody = document.querySelector("body");
-const dayNightStatus = JSON.parse(localStorage.getItem("dayNight"));
-if(dayNightStatus.dayNight) {
-  elLoginBody.classList.add("body-black");
-}else {
-  elLoginBody.classList.remove("body-black");
-}
-
+elLoginBody.classList.remove("body-black");
 const titleStatus = localStorage.getItem("titleStatus");
 if(titleStatus) {
   elTitle.textContent = titleStatus;  
