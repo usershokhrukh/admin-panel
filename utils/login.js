@@ -90,12 +90,12 @@ elLogin.addEventListener("submit" , (e) => {
       const elLoginBody = document.querySelector("body");
       const dayNightStatus = JSON.parse(localStorage.getItem("dayNight"));
       if(dayNightStatus.dayNight) {
-        elLoginBody.classList.add("body-black");
+        elDay.classList.remove("none");
         elNight.classList.add("none");
         elBody.classList.add("body-black");
         elNavbarName.classList.add("name-white");
       }else {
-        elLoginBody.classList.remove("body-black");
+        elDay.classList.add("none");
         elNight.classList.remove("none");
         elBody.classList.remove("body-black");
         elNavbarName.classList.remove("name-white");
