@@ -4,8 +4,27 @@ const elShow = document.querySelector(".show");
 const elTitle = document.querySelector("title");
 const elLoader = document.querySelector(".login__loader");
 const elButtonSpan = document.querySelector(".login__button-span");
+const elDashboard = document.querySelector(".dashboard");
 let toast = false;
+let userEnteredBool = false;
 elTitle.textContent = "Login";
+for(var i = 0; i < localStorage.length; i++) {
+  if(localStorage.key(i) === "userStatus") {
+    const userStorage = JSON.parse(localStorage.getItem("userStatus"));
+    if(userStorage.userEntered) {
+      elLogin.classList.add("none");
+      elDashboard.classList.remove("none");
+    } 
+    userEnteredBool = true;
+  }
+}
+
+if(!userEnteredBool) {
+  const userStatus = {
+    userEntered: false,
+  }
+  localStorage.setItem("userStatus" ,JSON.stringify(userStatus))
+}
 
 elHide.addEventListener("click", ()=> {
   elHide.classList.toggle("none");
@@ -54,6 +73,7 @@ elLogin.addEventListener("submit" , (e) => {
   }
   
   function tokenGet(response) {
+    dataUser.userEntered = true;
     const jsonAdmin = JSON.stringify(dataUser);
     localStorage.setItem("jsonAdmin", jsonAdmin);  
     elLoader.classList.toggle("none");
@@ -65,6 +85,14 @@ elLogin.addEventListener("submit" , (e) => {
     }, 600);
   }
 });
+
+const titleStatus = localStorage.getItem("titleStatus");
+if(titleStatus) {
+  elTitle.textContent = titleStatus;  
+}else {
+  localStorage.setItem("titleStatus", "Login");
+}
+
 
 function showToast(color, text) {
     Toastify({

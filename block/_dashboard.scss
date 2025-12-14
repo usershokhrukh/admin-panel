@@ -1,0 +1,282 @@
+.dashboard {
+  @include display();
+  align-items: start;
+  justify-content: space-between;
+  // background-color: red;
+
+  &__left {
+    @include display();
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 10px;
+    background-color: rgb(35, 36, 45);
+    // padding: 20px;
+    min-height: 100vh;
+    transition: all 0.4s ease-in-out;
+  }
+
+  &__left-bottom {
+    @include display();
+    flex-direction: column;
+    align-items: start;
+    // gap: 20px;
+    width:100%;
+    padding: 10px;
+  }
+
+  &__left-boxes {
+    @include display();
+    justify-content: start;
+    width:100%;
+    gap: 15px;
+    padding: 15px ;
+    // border-bottom: 1px solid white;
+    border-radius: 5px;
+    
+    &:hover {
+      background-color: rgba(127, 127, 127, 0.088);
+      cursor: pointer;
+    }
+  }
+
+  &__left-icons {
+    width:20px;
+    height: 20px;
+    color: white;
+  }
+
+  &__left-bottom-exit {
+    @include display();
+    width:100%;
+    justify-content: end;
+    padding: 10px;
+    flex-grow: 1;
+    align-items: end
+    // background-color: red;
+  }
+
+  &__left-bottom-box {
+    @include display();
+    gap: 5px;
+    background-color: rgb(97, 42, 42);
+    padding:3px;
+    border-radius: 4px;
+    border: 1px solid red;
+    opacity: 0.4;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
+  }
+
+  &__left-bottom-text {
+    font-family: "Open Sans";
+    color: red;
+  }
+
+  &__title {
+
+    padding: 20px 20px 20px 10px;
+    font-family: "Open Sans";
+    font-size: 20px;
+    color: white;
+    // margin-bottom: 20px;
+  } 
+
+  &__left-center{
+    @include display();
+    gap: 20px;
+    padding:20px 20px 20px 10px;
+  }
+
+  &__left-img {
+    height: 70px;
+    border-radius: 50px;
+  }
+
+  &__center-right {
+    @include display();
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+  }
+
+  &__left-text {
+    font-family: "Open Sans";
+    color: rgb(224, 224, 224);
+    font-size: 17px;
+  }
+
+  &__left-sub-text {
+    font-family: "Open Sans";
+    color: rgb(194, 194, 194);
+    font-size: 14px;
+  }
+
+  &__left-name {
+    font-family: "Open Sans";
+    font-size: 18px;
+    color: white;
+  }
+
+  &__navbar {
+    @include display();
+    // align-items: end;
+    background-color: transparent; 
+    width:100%;
+    flex-grow: 1 !important;
+    padding: 5px;
+    gap: 10px;
+    // flex-wrap: wrap
+  }
+
+  &__right { 
+    @include display();
+    flex-direction: column;
+    align-items: start;
+    flex-grow: 1;
+  }
+
+  &__navbar-name {
+    color: $black;
+    font-size: 14px
+  }
+
+  .name-white {
+    color: white !important;
+  }
+  
+ 
+
+  &__search-form {
+    @include display();
+    // background-color: red;
+    flex-grow: 1;
+  }
+
+  &__navbar-profile {
+    @include display();
+  }
+
+  &__search {
+    border: none;
+    padding: 10px 10px 10px 5px;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 500px;
+    background-color: rgb(248, 248, 248);
+    outline: none;
+    box-shadow: 0px 0px 10px -3px rgb(176, 176, 176);
+    font-family: "Open Sans";
+    min-width: 200px
+  }
+
+  &__navbar-profile {
+    @include display();
+    gap: 10px;
+    // background-color: red;
+  }
+
+  &__navbar-img {
+    border-radius: 50px;
+  }
+
+  &__top {
+    @include display();
+  }
+
+  &__top-icon {
+    transition: all 0.2s ease-in-out;
+    transform: rotate(180deg)
+  }
+
+  .rotate {
+    transform: rotate(0deg)
+  }
+
+  .left-name {
+    font-size: 12px;
+  }
+
+  .just-center {
+    justify-content: start;
+  }
+
+
+
+  .left-boxes {
+    justify-content: center;
+    padding: 20px 0px;
+    width: 60px;
+  }
+
+  .top {
+    flex-direction: column;
+    align-items: end;
+    width: 80px;
+    padding: 20px 0px 0px;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .dashboard {
+    &__top-icon {
+      display: none;
+    }
+    &__search {
+      max-width: none;
+      width:100%;
+      min-width: none !important;
+    }
+
+    &__left-sub-text {
+      display: none;
+    }
+
+    &__left-name{
+      font-size: 12px;
+    }
+
+    &__navbar {
+      flex-wrap: wrap-reverse;
+      justify-content: end;
+    }
+    &__title {
+      display: inline !important;
+      width:100%;     
+      font-size: 14px;
+      text-align: center;
+    }
+
+    &__left-img {
+      width: 40%;
+      height: 40%;
+    }
+    &__left-center {
+      gap: 10px;
+      display: none;
+    }
+
+    &__left-text {
+      display: none;
+    }
+
+    &__left-bottom-exit {
+      max-height: 450px;
+      justify-content: center;
+    }
+
+    &__left-bottom-text {
+      display: none;
+    }
+
+    &__left-boxes {
+      justify-content: center;
+      padding: 20px 0px;
+      width: 60px;
+    }
+  }
+}
