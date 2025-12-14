@@ -81,8 +81,23 @@ elLogin.addEventListener("submit" , (e) => {
 
     setTimeout(() => {
       elLogin.classList.add("none");
-      showToast("green", "Success!")
-    }, 600);
+      showToast("green", "Success!");
+      elDashboard.classList.remove("none");
+      const userStorage = JSON.parse(localStorage.getItem("userStatus"));
+      userStorage.userEntered = true;
+      localStorage.removeItem("userStatus");
+      localStorage.setItem("userStatus", JSON.stringify(userStorage));
+      const elBody = document.querySelector("body");
+      const dayNightStatus = JSON.parse(localStorage.getItem("dayNight"));
+      if(dayNightStatus.dayNight) {
+        elBody.classList.add("body-black");
+      }else {
+        elBody.classList.remove("body-black");
+      }
+      localStorage.removeItem("titleStatus")
+      localStorage.setItem("titleStatus", "Dashboard");
+      elTitle.textContent = localStorage.getItem("titleStatus");
+    }, 1000);
   }
 });
 
