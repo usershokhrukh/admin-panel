@@ -1,0 +1,25 @@
+@mixin display() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin hoverBg() {
+  &:hover {
+    background-color: black;
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+@mixin hover() {
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+}
