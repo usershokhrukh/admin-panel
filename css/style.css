@@ -34,6 +34,9 @@ body {
   padding: 0px 0px 20px 0px;
   box-shadow: 0px 0px 20px -3px rgb(196, 195, 195);
   transition: all 0.3s ease-in-out;
+  animation-name: form-color-animate;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
 }
 .login:hover {
   animation-name: form-animate;
@@ -50,6 +53,23 @@ body {
   }
   100% {
     box-shadow: 0px 0px 20px -3px rgb(196, 195, 195);
+  }
+}
+@keyframes form-color-animate {
+  0% {
+    box-shadow: 0px 0px 20px -5px rgba(17, 46, 141, 0.4);
+  }
+  30% {
+    box-shadow: 0px 0px 20px -5px rgba(197, 87, 8, 0.4);
+  }
+  60% {
+    box-shadow: 0px 0px 20px -5px rgba(7, 41, 113, 0.4);
+  }
+  90% {
+    box-shadow: 0px 0px 20px -5px rgba(69, 41, 151, 0.4);
+  }
+  100% {
+    box-shadow: 0px 0px 20px -5px rgba(17, 46, 141, 0.4);
   }
 }
 .login__box {
