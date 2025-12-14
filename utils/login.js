@@ -62,7 +62,7 @@ elLogin.addEventListener("submit" , (e) => {
     setTimeout(() => {
       elLogin.classList.add("none");
       showToast("green", "Success!")
-    }, 1000);
+    }, 600);
   }
 });
 
