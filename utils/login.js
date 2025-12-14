@@ -95,14 +95,15 @@ elLogin.addEventListener("submit" , (e) => {
     }, 1000);
   }
 });
-
-const elLoginBody = document.querySelector("body");
-const dayNightStatus = JSON.parse(localStorage.getItem("dayNight"));
-if(dayNightStatus.dayNight) {
-  elLoginBody.classList.add("body-black");
-}else {
-  elLoginBody.classList.remove("body-black");
-}
+const elBody = document.querySelector("body");
+elBody.classList.remove("body-black");
+// const elLoginBody = document.querySelector("body");
+// const dayNightStatus = JSON.parse(localStorage.getItem("dayNight"));
+// if(dayNightStatus.dayNight) {
+//   elLoginBody.classList.add("body-black");
+// }else {
+//   elLoginBody.classList.remove("body-black");
+// }
 
 const titleStatus = localStorage.getItem("titleStatus");
 if(titleStatus) {
