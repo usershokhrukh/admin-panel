@@ -88,18 +88,21 @@ elLogin.addEventListener("submit" , (e) => {
       localStorage.removeItem("userStatus");
       localStorage.setItem("userStatus", JSON.stringify(userStorage));
       const elBody = document.querySelector("body");
-      const dayNightStatus = JSON.parse(localStorage.getItem("dayNight"));
-      if(dayNightStatus.dayNight) {
-        elBody.classList.add("body-black");
-      }else {
-        elBody.classList.remove("body-black");
-      }
+      elBody.classList.remove("body-black");
       localStorage.removeItem("titleStatus")
       localStorage.setItem("titleStatus", "Dashboard");
       elTitle.textContent = localStorage.getItem("titleStatus");
     }, 1000);
   }
 });
+
+const elLoginBody = document.querySelector("body");
+const dayNightStatus = JSON.parse(localStorage.getItem("dayNight"));
+if(dayNightStatus.dayNight) {
+  elLoginBody.classList.add("body-black");
+}else {
+  elLoginBody.classList.remove("body-black");
+}
 
 const titleStatus = localStorage.getItem("titleStatus");
 if(titleStatus) {
