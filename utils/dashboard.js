@@ -30,27 +30,30 @@ elLeftArrow.addEventListener("click", ()=> {
   elLeftArrow.classList.toggle("rotate");
   arrowF();
 });
-let dayNightBool = false;
+// let dayNightBool = false;
 
-
-for(var i = 0; i < localStorage.length; i++) {
-  if(localStorage.key(i) === "dayNight") {
-    dayNightBool = true;
-    const objectDayNight = JSON.parse(localStorage.getItem("dayNight"));
-    if(objectDayNight.dayNight) {
-      elDay.classList.remove("none");
-      elNight.classList.add("none");
-      elBody.classList.add("body-black");
-      elNavbarName.classList.add("name-white");
-    }else {
-      elDay.classList.add("none");
-      elNight.classList.remove("none");
-      elBody.classList.remove("body-black");
-      elNavbarName.classList.remove("name-white");
+const objectUserStatus = JSON.parse(localStorage.getItem("userStatus"));
+if(objectUserStatus.userEntered) {  
+  for(var i = 0; i < localStorage.length; i++) {
+    if(localStorage.key(i) === "dayNight") {
+      // dayNightBool = true;
+      const objectDayNight = JSON.parse(localStorage.getItem("dayNight"));
+      if(objectDayNight.dayNight) {
+        elDay.classList.remove("none");
+        elNight.classList.add("none");
+        elBody.classList.add("body-black");
+        elNavbarName.classList.add("name-white");
+      }else {
+        elDay.classList.add("none");
+        elNight.classList.remove("none");
+        elBody.classList.remove("body-black");
+        elNavbarName.classList.remove("name-white");
+      }
     }
   }
 }
-if(!dayNightBool) {
+
+if(!localStorage.getItem("dayNight")) {
   const objectDayNight = {
     dayNight: false,
   }
