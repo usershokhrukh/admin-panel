@@ -2,7 +2,6 @@
   @include display();
   align-items: start;
   justify-content: space-between;
-
   &__left {
     @include display();
     flex-direction: column;
@@ -11,7 +10,6 @@
     gap: 10px;
     background-color: rgb(35, 36, 45);
     min-height: 100vh;
-    
   }
 
   &__left-bottom {
@@ -55,6 +53,9 @@
 
   &__left-bottom-box {
     @include display();
+    position: relative;
+    bottom: 40px;
+    margin-top: 30px;
     gap: 5px;
     background-color: rgb(97, 42, 42);
     padding:3px;
@@ -221,7 +222,6 @@
 
 @media (max-width: 600px) {
   .dashboard {
-    background-color: red;
     &__top-icon {
       display: none;
     }
