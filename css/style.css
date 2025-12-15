@@ -149,7 +149,7 @@ body {
 
 @media (max-width: 500px) {
   .login {
-    margin: 60% auto;
+    margin: 30% auto;
   }
 }
 .dashboard {
@@ -213,7 +213,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  bottom: 40px;
+  bottom: 60px;
   margin-top: 30px;
   gap: 5px;
   background-color: rgb(97, 42, 42);
