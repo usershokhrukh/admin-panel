@@ -6,6 +6,7 @@ const elTop = document.querySelector(".dashboard__top");
 const elDashboardTitle = document.querySelector(".dashboard__title");
 const elLeftBottomText = document.querySelector(".dashboard__left-bottom-text");
 const elLeftBottomBox = document.querySelector(".dashboard__left-bottom-box");
+const elLeftBottomExit = document.querySelector(".dashboard__left-bottom-exit");
 const elLeftBoxes = document.querySelectorAll(".dashboard__left-boxes");
 const elDashLogin = document.querySelector(".login-form");
 function arrowF() {
@@ -13,7 +14,7 @@ function arrowF() {
   elLeftCenter.classList.toggle("none");
   elLeftBottomText.classList.toggle("none");
   elLeftBottomExit.classList.toggle("just-center");
-  elDashboardTitle.classList.toggle("none");
+  elDashboardTitle.classList.toggle("title");
   elTop.classList.toggle("top");
   for(var i = 0; i < elLeftBoxes.length; i++) {
     elLeftBoxes[i].classList.toggle("just-center");

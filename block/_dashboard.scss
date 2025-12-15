@@ -2,7 +2,6 @@
   @include display();
   align-items: start;
   justify-content: space-between;
-
   &__left {
     @include display();
     flex-direction: column;
@@ -11,7 +10,6 @@
     gap: 10px;
     background-color: rgb(35, 36, 45);
     min-height: 100vh;
-    
   }
 
   &__left-bottom {
@@ -55,6 +53,9 @@
 
   &__left-bottom-box {
     @include display();
+    position: relative;
+    bottom: 60px;
+    margin-top: 30px;
     gap: 5px;
     background-color: rgb(97, 42, 42);
     padding:3px;
@@ -74,12 +75,13 @@
   }
 
   &__title {
-    padding: 20px 20px 20px 10px;
+    // background-color: red;
+    flex-grow: 1;
+    // padding: 20px 20px 20px 10px;
     font-family: "Open Sans";
     font-size: 15px;
     color: white;
     text-align: start;
-    flex-grow: 1;
   } 
 
   &__left-center{
@@ -183,7 +185,9 @@
   &__top {
     @include display();
     width:100%;
+    // background-color: red;
     justify-content: center;
+    padding: 10px 0px 5px 10px;
   }
 
   &__top-icon {
@@ -200,7 +204,7 @@
   }
 
   .just-center {
-    justify-content: start;
+    justify-content: center;
   }
 
 
@@ -212,10 +216,23 @@
   }
 
   .top {
-    flex-direction: column;
-    align-items: end;
+    // flex-direction: column;
+    align-items: start;
     width: 80px;
-    padding: 20px 0px 0px;
+    padding: 10px 0px 0px;
+
+    & svg {
+      width: 45px;
+    }
+  }
+
+  .title { 
+    
+      font-size: 11px;
+      padding: 5px 5px 0px 5px;
+      text-align: center;
+      width: auto;
+      display: flex;
   }
 
 }
@@ -228,6 +245,10 @@
 
     &__left-bottom {
       align-items: center;
+      // padding: 0px;
+      // background-color: red;
+      width: auto;
+      padding: 0px;
     }
     &__search {
       max-width: none;
@@ -248,10 +269,14 @@
       justify-content: end;
     }
     &__title {
-      display: inline !important;
-      width:100%;     
-      font-size: 14px;
+      // display: inline !important;
+      // width:auto;     
+      font-size: 11px;
+      padding: 10px 5px 0px 5px;
       text-align: center;
+      // background-color: red;
+      width: auto;
+      display: flex;
     }
 
     &__left-img {
@@ -270,6 +295,9 @@
     &__left-bottom-exit {
       max-height: 450px;
       justify-content: center;
+      // background-color: red;
+      padding: 0px;
+      width: auto;
     }
 
     &__left-bottom-text {
@@ -279,11 +307,12 @@
     &__left-boxes {
       justify-content: center;
       padding: 20px 0px;
-      width: 60px;
+      width: 60px !important;
     }
 
     &__left {
       height: 100%;
+      align-items: center;
     }
   }
 }
