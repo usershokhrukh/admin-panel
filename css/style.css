@@ -149,7 +149,7 @@ body {
 
 @media (max-width: 500px) {
   .login {
-    margin: 80% auto;
+    margin: 60% auto;
   }
 }
 .dashboard {
@@ -169,7 +169,6 @@ body {
   gap: 10px;
   background-color: rgb(35, 36, 45);
   min-height: 100vh;
-  transition: all 0.4s ease-in-out;
 }
 .dashboard__left-bottom {
   display: flex;
@@ -329,6 +328,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  justify-content: center;
 }
 .dashboard__top-icon {
   transition: all 0.2s ease-in-out;
@@ -358,6 +359,9 @@ body {
 @media (max-width: 600px) {
   .dashboard__top-icon {
     display: none;
+  }
+  .dashboard__left-bottom {
+    align-items: center;
   }
   .dashboard__search {
     max-width: none;
@@ -402,5 +406,8 @@ body {
     justify-content: center;
     padding: 20px 0px;
     width: 60px;
+  }
+  .dashboard__left {
+    height: 100%;
   }
 }/*# sourceMappingURL=style.css.map */

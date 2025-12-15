@@ -2,17 +2,12 @@ const elLeftArrow = document.querySelector(".dashboard__top-icon");
 const elLeftSubText = document.querySelector(".dashboard__left-sub-text");
 const elLeftCenter = document.querySelector(".dashboard__left-center");
 const elLeftText = document.querySelectorAll(".dashboard__left-text");
-// const elLeftText = document.querySelector(".dashboard__left-text");
 const elTop = document.querySelector(".dashboard__top");
 const elDashboardTitle = document.querySelector(".dashboard__title");
 const elLeftBottomText = document.querySelector(".dashboard__left-bottom-text");
-const elLeftBottomExit = document.querySelector(".dashboard__left-bottom-exit");
+const elLeftBottomBox = document.querySelector(".dashboard__left-bottom-box");
 const elLeftBoxes = document.querySelectorAll(".dashboard__left-boxes");
-const elBody = document.querySelector("body");
-const elDay = document.querySelector(".day");
-const elNight = document.querySelector(".night");
 const elDashLogin = document.querySelector(".login-form");
-const elNavbarName = document.querySelector(".dashboard__navbar-name");
 function arrowF() {
   elLeftSubText.classList.toggle("none");
   elLeftCenter.classList.toggle("none");
@@ -30,25 +25,12 @@ elLeftArrow.addEventListener("click", ()=> {
   elLeftArrow.classList.toggle("rotate");
   arrowF();
 });
-// let dayNightBool = false;
-
 const objectUserStatus = JSON.parse(localStorage.getItem("userStatus"));
 if(objectUserStatus.userEntered) {  
   for(var i = 0; i < localStorage.length; i++) {
     if(localStorage.key(i) === "dayNight") {
-      // dayNightBool = true;
       const objectDayNight = JSON.parse(localStorage.getItem("dayNight"));
-      if(objectDayNight.dayNight) {
-        elDay.classList.remove("none");
-        elNight.classList.add("none");
-        elBody.classList.add("body-black");
-        elNavbarName.classList.add("name-white");
-      }else {
-        elDay.classList.add("none");
-        elNight.classList.remove("none");
-        elBody.classList.remove("body-black");
-        elNavbarName.classList.remove("name-white");
-      }
+      blackWhite(objectDayNight.dayNight);
     }
   }
 }
@@ -60,24 +42,24 @@ if(!localStorage.getItem("dayNight")) {
   localStorage.setItem("dayNight", JSON.stringify(objectDayNight));
 }
 
-elLeftBottomExit.addEventListener("click", ()=> {
+elLeftBottomBox.addEventListener("click", ()=> {
   elDashboard.classList.add("none");
   elDashLogin.classList.remove("none");
   const userStorage = JSON.parse(localStorage.getItem("userStatus"));
   userStorage.userEntered = false;
   localStorage.removeItem("userStatus");
-  elBody.classList.remove("body-black");
+  // elBody.classList.remove("body-black");
+  blackWhite(false);
   localStorage.setItem("userStatus", JSON.stringify(userStorage));
   localStorage.removeItem("titleStatus")
   localStorage.setItem("titleStatus", "Login");
   elTitle.textContent = localStorage.getItem("titleStatus");
 })
 
+const elDay = document.querySelector(".day");
+const elNight = document.querySelector(".night");
 elDay.addEventListener("click", ()=> {
-  elDay.classList.toggle("none");
-  elNight.classList.toggle("none");
-  elBody.classList.toggle("body-black");
-  elNavbarName.classList.toggle("name-white");
+  blackWhite(false);
   const objectDayNight = {
     dayNight: false,
   }
@@ -86,10 +68,7 @@ elDay.addEventListener("click", ()=> {
 });
 
 elNight.addEventListener("click", ()=> {
-  elDay.classList.toggle("none");
-  elNight.classList.toggle("none");
-  elBody.classList.toggle("body-black");
-  elNavbarName.classList.toggle("name-white");
+  blackWhite(true);
   const objectDayNight = {
     dayNight: true,
   }

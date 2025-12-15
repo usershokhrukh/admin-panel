@@ -87,19 +87,8 @@ elLogin.addEventListener("submit" , (e) => {
       userStorage.userEntered = true;
       localStorage.removeItem("userStatus");
       localStorage.setItem("userStatus", JSON.stringify(userStorage));
-      const elLoginBody = document.querySelector("body");
       const dayNightStatus = JSON.parse(localStorage.getItem("dayNight"));
-      if(dayNightStatus.dayNight) {
-        elDay.classList.remove("none");
-        elNight.classList.add("none");
-        elBody.classList.add("body-black");
-        elNavbarName.classList.add("name-white");
-      }else {
-        elDay.classList.add("none");
-        elNight.classList.remove("none");
-        elBody.classList.remove("body-black");
-        elNavbarName.classList.remove("name-white");
-      }
+      blackWhite(dayNightStatus.dayNight);
       localStorage.removeItem("titleStatus")
       localStorage.setItem("titleStatus", "Dashboard");
       elTitle.textContent = localStorage.getItem("titleStatus");
@@ -140,3 +129,22 @@ function showToast(color, text) {
   }).showToast();
 }
 
+
+
+function blackWhite(color) {
+  const elBody = document.querySelector("body");
+  const elDay = document.querySelector(".day");
+  const elNight = document.querySelector(".night");
+  const elNavbarName = document.querySelector(".dashboard__navbar-name"); 
+  if(color) {
+    elDay.classList.remove("none");
+    elNight.classList.add("none");
+    elBody.classList.add("body-black");
+    elNavbarName.classList.add("name-white");
+  }else {
+    elDay.classList.add("none");
+    elNight.classList.remove("none");
+    elBody.classList.remove("body-black");
+    elNavbarName.classList.remove("name-white");
+  }
+}

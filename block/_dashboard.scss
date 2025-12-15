@@ -2,7 +2,6 @@
   @include display();
   align-items: start;
   justify-content: space-between;
-  // background-color: red;
 
   &__left {
     @include display();
@@ -11,9 +10,8 @@
     justify-content: start;
     gap: 10px;
     background-color: rgb(35, 36, 45);
-    // padding: 20px;
     min-height: 100vh;
-    transition: all 0.4s ease-in-out;
+    
   }
 
   &__left-bottom {
@@ -53,7 +51,6 @@
     padding: 10px;
     flex-grow: 1;
     align-items: end
-    // background-color: red;
   }
 
   &__left-bottom-box {
@@ -82,7 +79,6 @@
     font-family: "Open Sans";
     font-size: 20px;
     color: white;
-    // margin-bottom: 20px;
   } 
 
   &__left-center{
@@ -185,6 +181,8 @@
 
   &__top {
     @include display();
+    width:100%;
+    justify-content: center;
   }
 
   &__top-icon {
@@ -225,6 +223,10 @@
   .dashboard {
     &__top-icon {
       display: none;
+    }
+
+    &__left-bottom {
+      align-items: center;
     }
     &__search {
       max-width: none;
@@ -277,6 +279,10 @@
       justify-content: center;
       padding: 20px 0px;
       width: 60px;
+    }
+
+    &__left {
+      height: 100%;
     }
   }
 }
