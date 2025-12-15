@@ -233,9 +233,10 @@ body {
 .dashboard__title {
   flex-grow: 1;
   font-family: "Open Sans";
-  font-size: 20px;
+  font-size: 15px;
   color: white;
   text-align: start;
+  flex-grow: 1;
 }
 .dashboard__left-center {
   display: flex;
