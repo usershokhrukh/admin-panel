@@ -200,7 +200,7 @@
   }
 
   .just-center {
-    justify-content: start;
+    justify-content: center;
   }
 
 
@@ -228,6 +228,10 @@
 
     &__left-bottom {
       align-items: center;
+      // padding: 0px;
+      // background-color: red;
+      width: auto;
+      padding: 0px;
     }
     &__search {
       max-width: none;
@@ -248,10 +252,14 @@
       justify-content: end;
     }
     &__title {
-      display: inline !important;
-      width:100%;     
-      font-size: 14px;
+      // display: inline !important;
+      // width:auto;     
+      font-size: 11px;
+      padding: 30px 0px 0px 0px;
       text-align: center;
+      // background-color: red;
+      width: auto;
+      display: flex;
     }
 
     &__left-img {
@@ -270,6 +278,9 @@
     &__left-bottom-exit {
       max-height: 450px;
       justify-content: center;
+      // background-color: red;
+      padding: 0px;
+      width: auto;
     }
 
     &__left-bottom-text {
@@ -279,11 +290,12 @@
     &__left-boxes {
       justify-content: center;
       padding: 20px 0px;
-      width: 60px;
+      width: 60px !important;
     }
 
     &__left {
       height: 100%;
+      align-items: center;
     }
   }
 }

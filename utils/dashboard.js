@@ -6,6 +6,7 @@ const elTop = document.querySelector(".dashboard__top");
 const elDashboardTitle = document.querySelector(".dashboard__title");
 const elLeftBottomText = document.querySelector(".dashboard__left-bottom-text");
 const elLeftBottomBox = document.querySelector(".dashboard__left-bottom-box");
+const elLeftBottomExit = document.querySelector(".dashboard__left-bottom-exit");
 const elLeftBoxes = document.querySelectorAll(".dashboard__left-boxes");
 const elDashLogin = document.querySelector(".login-form");
 function arrowF() {
