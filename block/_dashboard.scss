@@ -77,8 +77,11 @@
 
     padding: 20px 20px 20px 10px;
     font-family: "Open Sans";
-    font-size: 20px;
+    font-size: 15px;
     color: white;
+    text-align: start;
+    // background-color: red;
+    flex-grow: 1
   } 
 
   &__left-center{

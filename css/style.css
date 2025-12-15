@@ -230,8 +230,10 @@ body {
 .dashboard__title {
   padding: 20px 20px 20px 10px;
   font-family: "Open Sans";
-  font-size: 20px;
+  font-size: 15px;
   color: white;
+  text-align: start;
+  flex-grow: 1;
 }
 .dashboard__left-center {
   display: flex;
