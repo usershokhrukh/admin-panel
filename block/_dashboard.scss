@@ -231,6 +231,16 @@
       display: flex;
   }
 
+  &__main {
+    @include display();
+    flex-direction: column;
+    width:100%;
+    min-height: 90vh;
+    // padding: 5% 20px 20px 20px;
+    justify-content: start;
+    // background-color: black;
+  }
+
 }
 
 @media (max-width: 600px) {

@@ -1,0 +1,130 @@
+.users {  
+  @include display();
+  flex-direction: column;
+  align-items: start;
+  gap: 50px;
+  // background-color: red;
+  width:100%;
+  padding: 20px 20px 20px 20%;
+
+  &__title {
+    font-family: "Open Sans";
+    font-weight: 900;
+    color: $black;
+  }
+
+  &__top {
+    @include display();
+    flex-direction: column;
+    align-items: start;
+    gap: 3px;
+  }
+
+  &__top-text {
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__card {
+    @include display();
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+    // background-color: black;
+    width:100%;
+    max-width: 1000px;
+  }
+
+  &__card-boxes {
+    @include display();
+    gap: 30px;
+  }
+
+  &__des {
+    font-family: "Open Sans";
+    color: $black;
+  }
+
+  &__items-top-name {
+    font-family: "Open Sans"
+  }
+
+  &__items {
+    @include display();
+    flex-direction: column;
+    align-items: start;
+    width:100%;
+  }
+
+  &__items-top {
+    @include display();
+    // background-color: red;
+    border-bottom: 1px solid;
+    padding: 10px;
+    justify-content: space-between;
+    width:100%;
+  }
+
+  &__items-bottom {
+    @include display();
+    gap: 10px;
+    border-bottom: 1px solid ;
+    width:100%;
+    justify-content: start;
+  }
+
+  &__items-bottom-left {
+    @include display();
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+    padding: 10px;
+    width: 150px;
+  }
+
+  &__items-bottom-right {
+    @include display();
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+  }
+}
+
+@keyframes show-des {
+  0%{
+    transform: translateX(0px);
+  }100%{
+    transform: translateX(100%);
+  }
+}
+
+
+@media (max-width: 900px) {
+  .users {
+    padding: 10px;
+    &__card-boxes {
+      display: none;
+    }
+  }
+
+  .main {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .users {
+    &__des {
+      font-size: 12px;
+    }
+
+    &__items-bottom {
+      gap: 5px;
+    }
+
+    &__items-bottom-left {
+      width: 120px;
+    }
+  }
+}

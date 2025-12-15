@@ -28,7 +28,6 @@
       <svg class="login__loader none" width="30" height="30" fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="12" r="3" opacity="1"><animate id="spinner_qYjJ" begin="0;spinner_t4KZ.end-0.25s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze"/></circle><circle cx="12" cy="12" r="3" opacity=".4"><animate begin="spinner_qYjJ.begin+0.15s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze"/></circle><circle cx="20" cy="12" r="3" opacity=".3"><animate id="spinner_t4KZ" begin="spinner_qYjJ.begin+0.3s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze"/></circle></svg>
     </button>
   </form>
-
   <div class="dashboard wrapper none">
     <div class="dashboard__left">
       <div class="dashboard__top">
@@ -87,12 +86,67 @@
         </div>
       </nav>
       <section class="dashboard__main">
-        
+        <article class="users">
+          <!-- <table class="users__table">
+            <thead class="users__head">
+              <tr class="users__row users__row-first">
+                <td class="users__des users__des-top">Name</td>
+                <td class="users__des users__des-top">Email</td>
+                <td class="users__des users__des-top">Phone</td>
+                <td class="users__des users__des-top">Registration date</td>
+                <td class="users__des users__des-top">Username</td>
+              </tr>
+            </thead>
+            <tbody class="users__body">
+              <tr class="users__row">
+                <td class="users__des user-name"><span class="users__span">John wegrDoe</span></td>
+                <td class="users__des user-email"><span class="users__span">johnwergwerg@gmail.com</span></td>
+                <td class="users__des user-phone"><span class="users__span">157werwerg02367033</span></td>
+                <td class="users__des user-register"><span class="users__span">15wergwerg.12.25q7:48</span></td>
+                <td class="users__des user-username"><span class="users__span">jowergqwefqwewerghnd</span></td>
+              </tr>
+            </tbody>
+          </table> -->
+          <div class="users__top">
+            <h2 class="users__title">Manage users</h2>
+            <p class="users__top-text"><span class="users__top-span">23</span> users</p>
+          </div>
+          <div class="users__card">
+            <div class="users__card-boxes users__card-boxes-first">
+              <p class="users__des users__des-top">Name</p>
+              <p class="users__des users__des-top">Email</p>
+              <p class="users__des users__des-top">Phone</p>
+              <p class="users__des users__des-top">Registration date</p>
+              <p class="users__des users__des-top">Username</p>
+            </div>
+
+            <div class="users__items">
+              <div class="users__items-top">
+                <p class="users__items-top-name">John Doe</p>
+                <svg width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
+              </div>
+              <div class="users__items-bottom">
+                <div class="users__items-bottom-left">
+                  <p class="users__des users__des-top">Name</p>
+                  <p class="users__des users__des-top">Email</p>
+                  <p class="users__des users__des-top">Phone</p>
+                  <p class="users__des users__des-top">Registration date</p>
+                  <p class="users__des users__des-top">Username</p>
+                </div>
+                <div class="users__items-bottom-right">
+                  <p class="users__des user-name">John Doe</p>
+                  <p class="users__des user-email">john@gmail.com</p>
+                  <p class="users__des user-phone">15702367033</p>
+                  <p class="users__des user-register">15.12.25 7:48</p>
+                  <p class="users__des user-username">johnd</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
       </section>
     </main>
   </div>
-
-
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="./utils/login.js"></script>
