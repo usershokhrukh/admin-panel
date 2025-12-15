@@ -202,19 +202,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   width: 100%;
   justify-content: end;
   padding: 10px;
-  flex-grow: 1;
-  align-items: end;
+  height: 100px;
 }
 .dashboard__left-bottom-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  bottom: 60px;
-  margin-top: 30px;
   gap: 5px;
   background-color: rgb(97, 42, 42);
   padding: 3px;
@@ -236,7 +233,6 @@ body {
   font-size: 15px;
   color: white;
   text-align: start;
-  flex-grow: 1;
 }
 .dashboard__left-center {
   display: flex;
