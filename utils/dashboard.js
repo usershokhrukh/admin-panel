@@ -14,7 +14,7 @@ function arrowF() {
   elLeftCenter.classList.toggle("none");
   elLeftBottomText.classList.toggle("none");
   elLeftBottomExit.classList.toggle("just-center");
-  elDashboardTitle.classList.toggle("none");
+  elDashboardTitle.classList.toggle("title");
   elTop.classList.toggle("top");
   for(var i = 0; i < elLeftBoxes.length; i++) {
     elLeftBoxes[i].classList.toggle("just-center");
