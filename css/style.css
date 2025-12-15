@@ -357,6 +357,9 @@ body {
 }
 
 @media (max-width: 600px) {
+  .dashboard {
+    background-color: red;
+  }
   .dashboard__top-icon {
     display: none;
   }
