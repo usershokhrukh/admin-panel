@@ -5,7 +5,7 @@
   gap: 50px;
   // background-color: red;
   width:100%;
-  padding: 20px 20px 20px 20%;
+  padding: 20px 20px 20px 5%;
 
   &__title {
     font-family: "Open Sans";
@@ -24,6 +24,7 @@
     font-family: "Open Sans";
     font-size: 14px;
     font-weight: 500;
+
   }
 
   &__card {
@@ -38,12 +39,18 @@
 
   &__card-boxes {
     @include display();
-    gap: 30px;
+    gap: 40px; // change
+    border-bottom: 2px solid rgb(138, 138, 138);
+    padding: 10px; // change
   }
 
   &__des {
     font-family: "Open Sans";
     color: $black;
+    width: 130px;
+    // background-color: black;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   &__items-top-name {
@@ -64,6 +71,7 @@
     padding: 10px;
     justify-content: space-between;
     width:100%;
+    display: none; // change
   }
 
   &__items-bottom {
@@ -72,6 +80,8 @@
     border-bottom: 1px solid ;
     width:100%;
     justify-content: start;
+    border: none; // change;
+    // background-color: red
   }
 
   &__items-bottom-left {
@@ -81,13 +91,16 @@
     gap: 10px;
     padding: 10px;
     width: 150px;
+    display: none; // change
   }
 
   &__items-bottom-right {
     @include display();
-    flex-direction: column;
+    // flex-direction: column; // change
     align-items: start;
-    gap: 10px;
+    gap: 40px;
+    border-bottom: 1px solid gray; // change
+    padding: 10px; // change
   }
 }
 
@@ -100,11 +113,29 @@
 }
 
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .users {
     padding: 10px;
+
+    &__items-top {
+      display: flex;
+    }
+
+    &__items-bottom-left {
+      display: flex;;
+    }
+    &__items-bottom-right {
+      flex-direction: column;
+      gap: 10px;
+      border: none;
+    }
+
     &__card-boxes {
       display: none;
+    }
+
+    &__des {
+      width: auto;
     }
   }
 

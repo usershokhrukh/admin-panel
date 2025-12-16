@@ -445,7 +445,7 @@ body {
   align-items: start;
   gap: 50px;
   width: 100%;
-  padding: 20px 20px 20px 20%;
+  padding: 20px 20px 20px 5%;
 }
 .users__title {
   font-family: "Open Sans";
@@ -479,11 +479,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 40px;
+  border-bottom: 2px solid rgb(138, 138, 138);
+  padding: 10px;
 }
 .users__des {
   font-family: "Open Sans";
   color: rgb(16, 15, 15);
+  width: 130px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 .users__items-top-name {
   font-family: "Open Sans";
@@ -504,6 +509,7 @@ body {
   padding: 10px;
   justify-content: space-between;
   width: 100%;
+  display: none;
 }
 .users__items-bottom {
   display: flex;
@@ -513,6 +519,7 @@ body {
   border-bottom: 1px solid;
   width: 100%;
   justify-content: start;
+  border: none;
 }
 .users__items-bottom-left {
   display: flex;
@@ -523,14 +530,16 @@ body {
   gap: 10px;
   padding: 10px;
   width: 150px;
+  display: none;
 }
 .users__items-bottom-right {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   align-items: start;
-  gap: 10px;
+  gap: 40px;
+  border-bottom: 1px solid gray;
+  padding: 10px;
 }
 
 @keyframes show-des {
@@ -541,12 +550,26 @@ body {
     transform: translateX(100%);
   }
 }
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .users {
     padding: 10px;
   }
+  .users__items-top {
+    display: flex;
+  }
+  .users__items-bottom-left {
+    display: flex;
+  }
+  .users__items-bottom-right {
+    flex-direction: column;
+    gap: 10px;
+    border: none;
+  }
   .users__card-boxes {
     display: none;
+  }
+  .users__des {
+    width: auto;
   }
   .main {
     padding: 10px;
