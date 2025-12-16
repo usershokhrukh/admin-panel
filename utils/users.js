@@ -11,3 +11,16 @@ const elUsersUsername = document.querySelectorAll(".users-username");
 const elUsersArrow = document.querySelectorAll(".users-arrow");
 const elUsersItemsBottom = document.querySelectorAll(".users__items-bottom");
 const elUsersCard = document.querySelector(".users__card");
+const elUsersActionDot = document.querySelectorAll(".users__action-dot");
+const elUserBox = document.querySelectorAll(".users__box");
+const elUsersView = document.querySelectorAll(".users-view");
+const elUsersEdit = document.querySelectorAll(".users-edit");
+const elUsersDelete = document.querySelectorAll(".users-delete");
+
+
+function innerData(users) {
+  console.log(users);
+  
+} 
+
+axios.get("https://fakestoreapi.com/users").then(response => innerData(response));

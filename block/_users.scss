@@ -39,9 +39,11 @@
 
   &__card-boxes {
     @include display();
-    gap: 40px; // change
+    gap: 25px; // change
     border-bottom: 2px solid rgb(138, 138, 138);
-    padding: 10px; // change
+    padding: 10px; // change;
+    width:100%;
+    justify-content: start;
   }
 
   &__des {
@@ -53,15 +55,69 @@
     overflow-y: hidden;
   }
 
+  &__des::-webkit-scrollbar{
+    display: none;
+  }
+
+  &__action {
+    @include display();
+    position: absolute;
+    right: 30px;
+    bottom: -65px;
+    padding: 1px;
+    // background-color: red;
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+  }
+
+  &__view {
+    border: none;
+    width:100%;
+    padding: 3px 5px;
+    border-radius: 2px;
+    font-family: "Open Sans";
+    font-size: 13px;
+    color: white;
+    // border: 1px solid rgb(0, 0, 0);
+  }
+
+  &__box {
+    @include display();
+    flex-direction: column;
+    gap: 3px; 
+  }
+
+  &__action-dot {
+    @include hover();
+  }
+
+  .users-view {
+    background-color: rgb(68, 168, 226);
+  }
+
+  .users-edit {
+    background-color: rgb(255, 145, 0);
+  }
+
+  .users-delete {
+    background-color: rgb(241, 119, 119);
+    color: rgb(221, 20, 20);
+    border: 1px solid rgb(177, 40, 40)
+  }
+
   &__items-top-name {
     font-family: "Open Sans"
   }
 
   &__items {
     @include display();
+    position: relative;
     flex-direction: column;
     align-items: start;
     width:100%;
+    // background-color: red
   }
 
   &__items-top {
@@ -77,11 +133,12 @@
   &__items-bottom {
     @include display();
     gap: 10px;
-    border-bottom: 1px solid ;
+    border-bottom: 1px solid ;  
     width:100%;
     justify-content: start;
     border: none; // change;
     // background-color: red
+    // background-color: black
   }
 
   &__items-bottom-left {
@@ -98,9 +155,11 @@
     @include display();
     // flex-direction: column; // change
     align-items: start;
-    gap: 40px;
+    gap: 25px;
     border-bottom: 1px solid gray; // change
     padding: 10px; // change
+    width:100%;
+    justify-content: start;
   }
 }
 
