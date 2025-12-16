@@ -20,6 +20,10 @@ body {
   display: none !important;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .login {
   display: flex;
   align-items: center;
@@ -479,9 +483,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 25px;
   border-bottom: 2px solid rgb(138, 138, 138);
   padding: 10px;
+  width: 100%;
+  justify-content: start;
 }
 .users__des {
   font-family: "Open Sans";
@@ -490,6 +496,55 @@ body {
   overflow-x: auto;
   overflow-y: hidden;
 }
+.users__des::-webkit-scrollbar {
+  display: none;
+}
+.users__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 30px;
+  bottom: -65px;
+  padding: 1px;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+}
+.users__view {
+  border: none;
+  width: 100%;
+  padding: 3px 5px;
+  border-radius: 2px;
+  font-family: "Open Sans";
+  font-size: 13px;
+  color: white;
+}
+.users__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3px;
+}
+.users__action-dot:hover {
+  opacity: 0.8;
+}
+.users__action-dot:active {
+  opacity: 1;
+}
+.users .users-view {
+  background-color: rgb(68, 168, 226);
+}
+.users .users-edit {
+  background-color: rgb(255, 145, 0);
+}
+.users .users-delete {
+  background-color: rgb(241, 119, 119);
+  color: rgb(221, 20, 20);
+  border: 1px solid rgb(177, 40, 40);
+}
 .users__items-top-name {
   font-family: "Open Sans";
 }
@@ -497,6 +552,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   flex-direction: column;
   align-items: start;
   width: 100%;
@@ -537,9 +593,11 @@ body {
   align-items: center;
   justify-content: center;
   align-items: start;
-  gap: 40px;
+  gap: 25px;
   border-bottom: 1px solid gray;
   padding: 10px;
+  width: 100%;
+  justify-content: start;
 }
 
 @keyframes show-des {
