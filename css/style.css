@@ -160,6 +160,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   align-items: start;
   justify-content: space-between;
 }
@@ -167,6 +168,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: sticky;
+  top: 0px;
   flex-direction: column;
   align-items: start;
   justify-content: start;
@@ -450,24 +453,39 @@ body {
   gap: 50px;
   width: 100%;
   padding: 20px 20px 20px 5%;
+  justify-content: space-between;
 }
 .users__title {
   font-family: "Open Sans";
   font-weight: 900;
   color: rgb(16, 15, 15);
 }
+.users__arrow {
+  transition: all 0.3s ease-in-out;
+}
 .users__top {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   flex-direction: column;
   align-items: start;
   gap: 3px;
 }
 .users__top-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
   font-family: "Open Sans";
   font-size: 14px;
   font-weight: 500;
+  color: rgb(16, 15, 15);
+}
+.users__loader {
+  position: absolute;
+  right: -50px;
+  top: 5px;
 }
 .users__card {
   display: flex;
@@ -475,7 +493,7 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: start;
-  gap: 20px;
+  gap: 5px;
   width: 100%;
   max-width: 1000px;
 }
@@ -495,6 +513,11 @@ body {
   width: 130px;
   overflow-x: auto;
   overflow-y: hidden;
+  max-width: 120px;
+  font-size: 13px;
+}
+.users .user-name {
+  text-transform: capitalize;
 }
 .users__des::-webkit-scrollbar {
   display: none;
@@ -504,11 +527,11 @@ body {
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 30px;
-  bottom: -65px;
+  right: 9px;
+  bottom: -5px;
   padding: 1px;
   gap: 5px;
-  flex-direction: column;
+  flex-direction: row-reverse;
   align-items: center;
   justify-content: end;
 }
@@ -518,15 +541,23 @@ body {
   padding: 3px 5px;
   border-radius: 2px;
   font-family: "Open Sans";
-  font-size: 13px;
+  font-size: 11px;
   color: white;
+}
+.users__view:hover {
+  opacity: 0.8;
+}
+.users__view:active {
+  opacity: 1;
 }
 .users__box {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  position: relative;
+  top: 5px;
   gap: 3px;
+  z-index: 3;
 }
 .users__action-dot:hover {
   opacity: 0.8;
@@ -536,9 +567,11 @@ body {
 }
 .users .users-view {
   background-color: rgb(68, 168, 226);
+  border: 1px solid rgb(94, 94, 236);
 }
 .users .users-edit {
   background-color: rgb(255, 145, 0);
+  border: 1px solid rgb(255, 68, 0);
 }
 .users .users-delete {
   background-color: rgb(241, 119, 119);
@@ -547,6 +580,8 @@ body {
 }
 .users__items-top-name {
   font-family: "Open Sans";
+  text-transform: capitalize;
+  color: rgb(16, 15, 15);
 }
 .users__items {
   display: flex;
@@ -556,12 +591,16 @@ body {
   flex-direction: column;
   align-items: start;
   width: 100%;
+  background-color: rgb(237, 237, 237);
+  border-radius: 5px;
+}
+.users .items-black {
+  background-color: rgb(42, 44, 58) !important;
 }
 .users__items-top {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid;
   padding: 10px;
   justify-content: space-between;
   width: 100%;
@@ -571,11 +610,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  border-bottom: 1px solid;
   width: 100%;
-  justify-content: start;
-  border: none;
 }
 .users__items-bottom-left {
   display: flex;
@@ -594,10 +629,12 @@ body {
   justify-content: center;
   align-items: start;
   gap: 25px;
-  border-bottom: 1px solid gray;
   padding: 10px;
   width: 100%;
   justify-content: start;
+}
+.users .arrow-rotate {
+  transform: rotate(180deg);
 }
 
 @keyframes show-des {
@@ -628,14 +665,15 @@ body {
   }
   .users__des {
     width: auto;
-  }
-  .main {
-    padding: 10px;
+    font-size: 9px;
   }
 }
 @media (max-width: 500px) {
+  .users {
+    height: auto;
+  }
   .users__des {
-    font-size: 12px;
+    font-size: 10px;
   }
   .users__items-bottom {
     gap: 5px;

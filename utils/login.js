@@ -92,6 +92,7 @@ elLogin.addEventListener("submit" , (e) => {
       localStorage.removeItem("titleStatus")
       localStorage.setItem("titleStatus", "Dashboard");
       elTitle.textContent = localStorage.getItem("titleStatus");
+      startSearch();
     }, 1000);
   }
   
@@ -136,15 +137,56 @@ function blackWhite(color) {
   const elDay = document.querySelector(".day");
   const elNight = document.querySelector(".night");
   const elNavbarName = document.querySelector(".dashboard__navbar-name"); 
+  const elUserTitle = document.querySelector(".users__title");
+  const elUsersTopText = document.querySelector(".users__top-text");
+  const elUsersTopSpan = document.querySelector(".users__top-span");
+  const elUsersDes = document.querySelectorAll(".users__des");
+  const elUsersItemsTopName = document.querySelectorAll(".users__items-top-name");
+  const elUsersName = document.querySelectorAll(".users-name");
+  const elUsersEmail = document.querySelectorAll(".users-email");
+  const elUsersPhone = document.querySelectorAll(".users-phone");
+  const elUsersRegister = document.querySelectorAll(".users-register");
+  const elUsersUsername = document.querySelectorAll(".users-username");
+  const elUsersCard = document.querySelector(".users__card");
+  const elUsersView = document.querySelectorAll(".users-view");
+  const elUsersEdit = document.querySelectorAll(".users-edit");
+  const elUsersDelete = document.querySelectorAll(".users-delete");
+  const elUsersLoad = document.querySelector(".users__loader");
+  const elUsersActionDot = document.querySelectorAll(".users__action-dot");
+  const elUsersArrow = document.querySelectorAll(".users-arrow");
+  const elUsersItemsBottom = document.querySelectorAll(".users__items-bottom");
+  const elUsersItems = document.querySelectorAll(".users__items");
   if(color) {
     elDay.classList.remove("none");
     elNight.classList.add("none");
     elBody.classList.add("body-black");
     elNavbarName.classList.add("name-white");
+    elUserTitle.classList.add("name-white");
+    elUsersTopText.classList.add("name-white");
+    for(var i = 0; i < elUsersDes.length; i++) {
+      elUsersDes[i].classList.add("name-white");
+    }
+    for(var i = 0; i < elUsersItemsTopName.length; i++) {
+      elUsersItemsTopName[i].classList.add("name-white");
+      elUsersItems[i].classList.add("items-black");
+      elUsersArrow[i].classList.add("name-white");
+    }
+
   }else {
     elDay.classList.add("none");
     elNight.classList.remove("none");
     elBody.classList.remove("body-black");
     elNavbarName.classList.remove("name-white");
+    elUserTitle.classList.remove("name-white");
+    elUsersTopText.classList.remove("name-white");
+    for(var i = 0; i < elUsersDes.length; i++) {
+      elUsersDes[i].classList.remove("name-white");
+    }
+    
+    for(var i = 0; i < elUsersItemsTopName.length; i++) {
+      elUsersItemsTopName[i].classList.remove("name-white");
+      elUsersItems[i].classList.remove("items-black");
+      elUsersArrow[i].classList.remove("name-white");
+    }
   }
 }

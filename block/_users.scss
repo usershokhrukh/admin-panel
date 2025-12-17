@@ -3,36 +3,46 @@
   flex-direction: column;
   align-items: start;
   gap: 50px;
-  // background-color: red;
   width:100%;
   padding: 20px 20px 20px 5%;
-
+  justify-content: space-between;
   &__title {
     font-family: "Open Sans";
     font-weight: 900;
     color: $black;
   }
 
+  &__arrow {
+    transition: all 0.3s ease-in-out;
+  }
+
   &__top {
     @include display();
+    position: relative;
     flex-direction: column;
     align-items: start;
     gap: 3px;
   }
 
   &__top-text {
+    @include display();
+    gap: 3px;
     font-family: "Open Sans";
     font-size: 14px;
     font-weight: 500;
-
+    color: $black;
+  }
+  &__loader {
+    position: absolute;
+    right: -50px;
+    top: 5px;
   }
 
   &__card {
     @include display();
     flex-direction: column;
     align-items: start;
-    gap: 20px;
-    // background-color: black;
+    gap: 5px;
     width:100%;
     max-width: 1000px;
   }
@@ -50,9 +60,15 @@
     font-family: "Open Sans";
     color: $black;
     width: 130px;
-    // background-color: black;
+    // background-color: rgb(126, 105, 105);
     overflow-x: auto;
     overflow-y: hidden;
+    max-width: 120px;
+    font-size: 13px;
+  }
+
+  .user-name {
+    text-transform: capitalize;
   }
 
   &__des::-webkit-scrollbar{
@@ -62,31 +78,35 @@
   &__action {
     @include display();
     position: absolute;
-    right: 30px;
-    bottom: -65px;
+    right: 9px;
+    bottom: -5px;
     padding: 1px;
     // background-color: red;
     gap: 5px;
-    flex-direction: column;
+    flex-direction: row-reverse;
     align-items: center;
     justify-content: end;
   }
 
   &__view {
+    @include hover();
     border: none;
     width:100%;
     padding: 3px 5px;
     border-radius: 2px;
     font-family: "Open Sans";
-    font-size: 13px;
+    font-size: 11px;
     color: white;
     // border: 1px solid rgb(0, 0, 0);
   }
 
   &__box {
     @include display();
-    flex-direction: column;
+    position: relative;
+    top: 5px;
+    // flex-direction: ;
     gap: 3px; 
+    z-index: 3
   }
 
   &__action-dot {
@@ -95,10 +115,12 @@
 
   .users-view {
     background-color: rgb(68, 168, 226);
+    border: 1px solid rgb(94, 94, 236);
   }
 
   .users-edit {
     background-color: rgb(255, 145, 0);
+    border: 1px solid rgb(255, 68, 0);
   }
 
   .users-delete {
@@ -108,7 +130,9 @@
   }
 
   &__items-top-name {
-    font-family: "Open Sans"
+    font-family: "Open Sans";
+    text-transform: capitalize;
+    color: $black;
   }
 
   &__items {
@@ -117,13 +141,19 @@
     flex-direction: column;
     align-items: start;
     width:100%;
+    background-color: rgb(237, 237, 237);
+    border-radius: 5px;
     // background-color: red
+  }
+  
+  .items-black {
+    background-color: rgb(42, 44, 58) !important;
   }
 
   &__items-top {
     @include display();
     // background-color: red;
-    border-bottom: 1px solid;
+    // border-bottom: 1px solid gray;
     padding: 10px;
     justify-content: space-between;
     width:100%;
@@ -131,14 +161,8 @@
   }
 
   &__items-bottom {
-    @include display();
-    gap: 10px;
-    border-bottom: 1px solid ;  
+    @include display(); 
     width:100%;
-    justify-content: start;
-    border: none; // change;
-    // background-color: red
-    // background-color: black
   }
 
   &__items-bottom-left {
@@ -156,11 +180,16 @@
     // flex-direction: column; // change
     align-items: start;
     gap: 25px;
-    border-bottom: 1px solid gray; // change
+    // border-bottom: 1px solid gray; // change
     padding: 10px; // change
     width:100%;
     justify-content: start;
   }
+
+  .arrow-rotate {
+    transform: rotate(180deg);
+  }
+
 }
 
 @keyframes show-des {
@@ -175,7 +204,6 @@
 @media (max-width: 1100px) {
   .users {
     padding: 10px;
-
     &__items-top {
       display: flex;
     }
@@ -195,18 +223,16 @@
 
     &__des {
       width: auto;
+      font-size: 9px;
     }
-  }
-
-  .main {
-    padding: 10px;
   }
 }
 
 @media (max-width: 500px) {
   .users {
+    height: auto;
     &__des {
-      font-size: 12px;
+      font-size: 10px;
     }
 
     &__items-bottom {
