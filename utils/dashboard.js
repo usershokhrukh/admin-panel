@@ -77,3 +77,37 @@ elNight.addEventListener("click", ()=> {
   localStorage.setItem("dayNight", JSON.stringify(objectDayNight));
   
 });
+
+
+const elUsersLeftBoxes = document.querySelectorAll(".dashboard__left-boxes");
+// const elUsersCard = document.querySelector(".users__card");
+// const elUsersTopSpan = document.querySelector(".users__top-span");
+// const elUsersLoad = document.querySelector(".users__loader");
+
+let startStatus = true;
+elUsersLeftBoxes[1].addEventListener("click", ()=> {
+  // if(startStatus) {
+    // startStatus = true;
+    elUsersCard.innerHTML = `
+      <div class="users__card-boxes users__card-boxes-first">
+                <p class="users__des users__des-top">Name</p>
+                <p class="users__des users__des-top">Email</p>
+                <p class="users__des users__des-top">Phone</p>
+                <p class="users__des users__des-top">Registration date</p>
+                <p class="users__des users__des-top">Username</p>
+              </div>
+    `;
+    elUsersTopSpan.textContent = "...";
+    elUsersLoad.classList.remove("none");
+    if(startStatus) {
+      startStatus = false;
+      setTimeout(() => {
+            startSearch();
+            startStatus = true;
+          }, 1000);
+    // }
+    
+  }
+
+  
+})

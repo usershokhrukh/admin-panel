@@ -54,6 +54,7 @@
     padding: 10px; // change;
     width:100%;
     justify-content: start;
+    order: -3 !important;
   }
 
   &__des {
@@ -135,6 +136,18 @@
     color: $black;
   }
 
+  &__id, &__id-second {
+    background-color: rgb(52, 113, 192);
+    padding: 0px 4px;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  &__id {
+    padding: 7px 3px !important;
+  }
+
   &__items {
     @include display();
     position: relative;
@@ -190,6 +203,82 @@
     transform: rotate(180deg);
   }
 
+  &__id-second {
+    display: none;
+  }
+
+  &__change-form {
+    @include display();
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+    position: fixed;
+    top: 35vh;
+    left: 44vw;
+    // right: 100vw;
+    background-color: rgba(35, 36, 45, 0.6);
+    border: 1px solid rgb(27, 118, 112);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    z-index: 5 !important;
+  }
+
+  &__change-box {
+    @include display();
+    position: relative;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+  }
+
+  &__change-label {
+    font-family: "Open Sans";
+    color: rgb(201, 199, 199);
+  }
+
+  &__change-input {
+    font-family: "Open Sans";
+    outline: none;
+    padding: 5px;
+    border: none;
+    width:100%;
+    min-width: 230px;
+    border-radius: 5px;
+    border: 1px solid rgb(27, 118, 112);
+    background-color: rgba(52, 113, 192, 0.165);
+    color: white;
+  }
+  &__change-title {
+    font-family: "Open Sans";
+    font-size: 20px;
+    color: white;
+    font-weight: 700;
+  }
+  &__change-button {
+    font-family: "Open Sans";
+    border: none;
+    padding: 3px 5px;
+    font-size: 14px;
+    border-radius: 2px;
+    background-color: rgb(42, 162, 42);
+    color: white;
+  }
+
+  &__change-top {
+    @include display();
+    width:100%;
+    justify-content: space-between;
+  }
+
+  &__change-exit {
+    color: white;
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    width: 18px;
+  }
+
 }
 
 @keyframes show-des {
@@ -204,6 +293,17 @@
 @media (max-width: 1100px) {
   .users {
     padding: 10px;
+
+    &__change-form {
+      left: 35vw;
+    }
+    &__id {
+      display: none;
+    }
+
+    &__id-second{
+      display: inline;
+    }
     &__items-top {
       display: flex;
     }
@@ -225,12 +325,40 @@
       width: auto;
       font-size: 9px;
     }
+
+    
   }
 }
 
 @media (max-width: 500px) {
   .users {
     height: auto;
+
+    &__change-form {
+      left: 24vw;
+      top: 15vh;
+      // height: 150px;
+      padding: 10px;
+    }
+
+    &__change-label {
+      font-size: 12px;
+    }
+    &__change-title {
+      font-size: 12px;
+    }
+
+    &__change-button {
+      font-size: 8px;
+    }
+
+    &__change-exit {
+      width:10px;
+    }
+
+    &__change-input {
+      min-width:100px;
+    }
     &__des {
       font-size: 10px;
     }

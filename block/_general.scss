@@ -25,6 +25,26 @@ body {
 .hidden {
   visibility: hidden;
 }
+.order {
+  order: -1 !important;
+  transform: scale(1.01);
+}
+
+.show {
+  animation-name: show;
+  animation-duration: 0.3s;
+}
+
+.search-text {
+  color: rgb(221, 177, 17) !important;
+}
+@keyframes show {
+  0%{
+    transform: translateY(-10px);
+  }100%{
+    transform: translateY(0px);
+  }
+}
 
 // .flex {
 //   display: flex;
