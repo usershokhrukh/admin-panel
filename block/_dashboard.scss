@@ -1,9 +1,12 @@
 .dashboard {
   @include display();
+  position: relative;
   align-items: start;
   justify-content: space-between;
   &__left {
     @include display();
+    position: sticky;
+    top: 0px;
     flex-direction: column;
     align-items: start;
     justify-content: start;
@@ -140,7 +143,7 @@
   }
 
   .name-white {
-    color: white !important;
+    color: white;
   }
   
  

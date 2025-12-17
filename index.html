@@ -87,29 +87,12 @@
       </nav>
       <section class="dashboard__main">
         <article class="users">
-          <!-- <table class="users__table">
-            <thead class="users__head">
-              <tr class="users__row users__row-first">
-                <td class="users__des users__des-top">Name</td>
-                <td class="users__des users__des-top">Email</td>
-                <td class="users__des users__des-top">Phone</td>
-                <td class="users__des users__des-top">Registration date</td>
-                <td class="users__des users__des-top">Username</td>
-              </tr>
-            </thead>
-            <tbody class="users__body">
-              <tr class="users__row">
-                <td class="users__des user-name"><span class="users__span">John wegrDoe</span></td>
-                <td class="users__des user-email"><span class="users__span">johnwergwerg@gmail.com</span></td>
-                <td class="users__des user-phone"><span class="users__span">157werwerg02367033</span></td>
-                <td class="users__des user-register"><span class="users__span">15wergwerg.12.25q7:48</span></td>
-                <td class="users__des user-username"><span class="users__span">jowergqwefqwewerghnd</span></td>
-              </tr>
-            </tbody>
-          </table> -->
           <div class="users__top">
             <h2 class="users__title">Manage users</h2>
-            <p class="users__top-text"><span class="users__top-span">23</span> users</p>
+            <p class="users__top-text"><span class="users__top-span">...</span> users </p>
+            <span>
+              <svg class="users__loader" width="30" fill="gray" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z"><animateTransform attributeName="transform" type="rotate" dur="0.75s" values="0 12 12;360 12 12" repeatCount="indefinite"/></path></svg>
+            </span>
           </div>
           <div class="users__card">
             <div class="users__card-boxes users__card-boxes-first">
@@ -119,42 +102,29 @@
               <p class="users__des users__des-top">Registration date</p>
               <p class="users__des users__des-top">Username</p>
             </div>
-
-            <div class="users__items">
-              <div class="users__items-top">
-                <p class="users__items-top-name">John Doe</p>
-                <svg class="users-arrow" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
-              </div>
-              <div class="users__items-bottom">
-                <div class="users__items-bottom-left">
-                  <p class="users__des users__des-top">Name</p>
-                  <p class="users__des users__des-top">Email</p>
-                  <p class="users__des users__des-top">Phone</p>
-                  <p class="users__des users__des-top">Registration date</p>
-                  <p class="users__des users__des-top">Username</p>
-                </div>
-                <div class="users__items-bottom-right">
-                  <p class="users__des user-name">John Doe</p>
-                  <p class="users__des user-email">john@gmail.com</p>
-                  <p class="users__des user-phone">15702367033</p>
-                  <p class="users__des user-register">15.12.25 7:48</p>
-                  <p class="users__des user-username">johnd</p>
-                  <div class="users__action">
-                    <svg class="users__action-dot" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"/></svg>
-                    <div class="users__box hidden">
-                      <button class="users__view users-view">view</button>
-                      <button class="users__view users-edit">edit</button>
-                      <button class="users__view users-delete">delete</button>
-                    </div>
-                    
-                  </div>
-              
-                </div>
-              </div>
-            </div>
           </div>
         </article>
       </section>
+      <div class="users__change">
+        <form class="users__change-form show none">
+          <div class="users__change-top">
+            <h2 class="users__change-title">
+              New
+            </h2>
+            <button class="users__change-button" type="submit">send</button>
+            <svg class="users__change-exit" width="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
+          </div>
+          
+          <div class="users__change-box">
+            <label class="users__change-label" for="users__change-username">Username</label>
+            <input id="users__change-username" class="users__change-input" name="users-change-username" type="text">
+          </div>
+          <div class="users__change-box">
+            <label class="users__change-label" for="users__change-email">Email</label>
+            <input id="users__change-email" class="users__change-input" name="users-change-email" type="text">
+          </div>
+        </form>
+      </div>
     </main>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
