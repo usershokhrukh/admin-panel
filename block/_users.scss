@@ -220,19 +220,24 @@
     display: none;
   }
 
+  &__change {
+    width:100%;
+  }
+
   &__change-form {
     @include display();
     flex-direction: column;
     align-items: start;
     gap: 10px;
-    position: fixed;
-    top: 35vh;
-    left: 44vw;
+    width:100%;
+    // position: absolute;
+    // top: 35vh;
+    // left: 44vw;
     // right: 100vw;
-    background-color: rgba(35, 36, 45, 0.6);
+    background-color: rgba(63, 67, 94, 0.6);
     border: 1px solid rgb(27, 118, 112);
-    padding: 20px;
-    border-radius: 10px;
+    padding:30px 20px 20px 20px;
+    border-radius: 5px;
     backdrop-filter: blur(10px);
     z-index: 5 !important;
   }
@@ -265,8 +270,15 @@
   &__change-title {
     font-family: "Open Sans";
     font-size: 20px;
-    color: white;
+    color:white;
     font-weight: 700;
+    max-width: 300px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  &__change-title::-webkit-scrollbar {
+    display: none;
   }
   &__change-button {
     font-family: "Open Sans";
@@ -285,11 +297,88 @@
   }
 
   &__change-exit {
-    color: white;
+    color: rgb(179, 178, 178);
     position: absolute;
     top: 3px;
     left: 2px;
-    width: 18px;
+    width: 20px;
+  }
+
+  &__new {
+    width:100%;
+  }
+
+  &__new-form {
+    @include display();
+    flex-direction: column;
+    align-items: start;
+    padding: 30px 20px 20px 20px;
+    border-radius: 10px;
+    width:100%;
+    background-color: rgba(63, 67, 94, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgb(27, 118, 112);
+    gap: 8px;
+  }
+
+  &__new-top {
+    @include display();
+    position: relative;
+    justify-content: space-between;
+    width:100%;
+    gap: 10px;
+  }
+
+  &__new-close {
+    position: absolute;
+    top: -25px;
+    left: -15px;
+    color: rgb(179, 178, 178);
+    width:20px;
+  }
+
+  &__change-span-id {
+    overflow: auto;
+    width: 100%;
+    // background-color: red
+  }
+
+  &__new-box {
+    @include display();
+    flex-direction: column;
+    align-items: start;
+    gap: 3px;
+    // width:100%;
+  }
+
+  &__new-input {
+    border: 1px solid rgb(27, 118, 112);
+    background-color: rgba(52, 113, 192, 0.165);
+    border-radius: 4px;
+    outline: none;
+    padding: 4px 2px;
+    font-family: "Open Sans";
+    font-size: 14px;
+    width:100%;
+    min-width: 230px;
+    color: white;
+  }
+  &__new-button {
+    border: none;
+    padding: 4px;
+    border-radius: 2px;
+    font-family: "Open Sans";
+    font-size: 14px;
+    background-color: rgb(42, 162, 42);
+    color: white;
+  }
+
+  &__show-box {
+    @include display();
+    flex-wrap: wrap;
+    justify-content: start;
+    width: 100%;
+    gap: 5px;
   }
 
 }
@@ -309,9 +398,6 @@
 
     &__add {
       top: -25px;
-    }
-    &__change-form {
-      left: 35vw;
     }
     &__id {
       display: none;
@@ -351,10 +437,7 @@
     height: auto;
 
     &__change-form {
-      left: 24vw;
-      top: 15vh;
-      // height: 150px;
-      padding: 10px;
+      padding:15px 10px 15px 10px;
     }
 
     &__change-label {
@@ -362,14 +445,13 @@
     }
     &__change-title {
       font-size: 12px;
-    }
-
-    &__change-button {
-      font-size: 8px;
+      max-width: 150px;
     }
 
     &__change-exit {
-      width:10px;
+      width:16px;
+      top: 1px;
+      left: 1px;
     }
 
     &__change-input {
