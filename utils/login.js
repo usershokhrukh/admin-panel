@@ -51,17 +51,23 @@ elLogin.addEventListener("submit" , (e) => {
   if(elUsername && elPassword) {
     elLoader.classList.toggle("none");
     elButtonSpan.classList.toggle("none");
-    axios.post(api, dataUser).then(response => tokenGet(response)).catch(error => {
-      if(!toast) {
-        showToast("red", "Admin not found!");
-        toast = true;
-        setTimeout(() => {
-          toast = false;
-        }, 5000);
-      }
-      elLoader.classList.toggle("none");
-      elButtonSpan.classList.toggle("none");
-    });
+    if(localStorage.getItem("users")) {
+      axios.post(api, dataUser).then(response => tokenGet(response)).catch(error => {
+        if(!toast) {
+          showToast("red", "Admin not found!");
+          toast = true;
+          setTimeout(() => {
+            toast = false;
+          }, 5000);
+        }
+        elLoader.classList.toggle("none");
+        elButtonSpan.classList.toggle("none");
+      });
+    }else {
+      objectDataLocal = JSON.parse(localStorage.getItem("users"));
+      tokenGet(objectDataLocal);
+    }
+    
   }else {
     if(!toast) {
         showToast("red", "Fill Username and Password!");
@@ -73,6 +79,8 @@ elLogin.addEventListener("submit" , (e) => {
   }
   
   function tokenGet(response) {
+    elUsersCard = document.querySelector(".users__card");     
+    elUsersCard.innerHTML = "";
     dataUser.userEntered = true;
     const jsonAdmin = JSON.stringify(dataUser);
     localStorage.setItem("jsonAdmin", jsonAdmin);  

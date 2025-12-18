@@ -8,7 +8,7 @@ const elUsersEmail = document.querySelectorAll(".users-email");
 const elUsersPhone = document.querySelectorAll(".users-phone");
 const elUsersRegister = document.querySelectorAll(".users-register");
 const elUsersUsername = document.querySelectorAll(".users-username");
-const elUsersCard = document.querySelector(".users__card");
+let elUsersCard = document.querySelector(".users__card");
 const elUsersView = document.querySelectorAll(".users-view");
 const elUsersDelete = document.querySelectorAll(".users-delete");
 const elUsersLoad = document.querySelector(".users__loader");
@@ -129,7 +129,7 @@ function startSearch() {
       .get("https://fakestoreapi.com/users")
       .then((response) => innerData(response.data));
   } else if (localStorage.getItem("users")) {
-    const objectDataLocal = JSON.parse(localStorage.getItem("users"));
+    let objectDataLocal = JSON.parse(localStorage.getItem("users"));
     innerData(objectDataLocal);
   }
 }
