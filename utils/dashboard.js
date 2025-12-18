@@ -160,7 +160,10 @@ function form() {
   changeUsername = elUsersChangeForm["users-change-username"].value.trim();
   changeEmail = elUsersChangeForm["users-change-email"].value.trim();
   elUsersChangeSpanId = document.querySelector(".users__change-span-id");
-  
+  elUsersNewForm = document.querySelector(".users__new-form");
+  elUsersAdd = document.querySelector(".users__add");
+  elUsersAdd.addEventListener("click", addF);
+  newFormF();  
 }
   
 function navigatorF() {
