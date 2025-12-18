@@ -319,6 +319,7 @@
     backdrop-filter: blur(10px);
     border: 1px solid rgb(27, 118, 112);
     gap: 8px;
+    // display: flex !important;
   }
 
   &__new-top {
@@ -379,6 +380,7 @@
     justify-content: start;
     width: 100%;
     gap: 5px;
+    order: -3;
   }
 
 }
