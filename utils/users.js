@@ -153,7 +153,11 @@ function showFormData(index) {
   dataId = id;
 }
 
+let errorStatusUsers = true;
+let axiosStatus = true;
+
 elUsersChangeForm.addEventListener("submit", (e) => {
+  e.preventDefault();
   let checkEmail = false;
   let changeUsername = elUsersChangeForm["users-change-username"].value.trim();
   let changeEmail = elUsersChangeForm["users-change-email"].value.trim();
@@ -165,7 +169,6 @@ elUsersChangeForm.addEventListener("submit", (e) => {
       }
     }
   }
-  e.preventDefault();
   changeUsername = elUsersChangeForm["users-change-username"].value.trim();
   changeEmail = elUsersChangeForm["users-change-email"].value.trim();
   const {username, email} = dataArray[dataId - 1];
@@ -185,34 +188,40 @@ elUsersChangeForm.addEventListener("submit", (e) => {
         dataArray[dataId - 1].username = putUsername;
         dataArray[dataId - 1].email = putEmail;
         const putStatus = 200;
-        axios
-          .put(
-            `https://fakestoreapi.com/users/${dataId}`,
-            JSON.stringify(dataArray[dataId - 1])
-          )
-          .then((response) => showPut(response))
-          .catch((error) => {
-            if (putStatus >= 200 && putStatus < 299) {
-              showToast("green", "Changed!");
-            } else {
-              showToast("red", `Something went wrong!`);
+        if (errorStatusUsers && axiosStatus) {
+          errorStatusUsers = false;
+          axiosStatus = false;
+          axios
+            .put(
+              `https://fakestoreapi.com/users/${dataId}`,
+              JSON.stringify(dataArray[dataId - 1])
+            )
+            .then((response) => showPut(response))
+            .catch((error) => {
+              axiosStatus = true;
+              if (putStatus >= 200 && putStatus < 299) {
+                showToast("green", "Changed!");
+              } else {
+                showToast("red", `Something went wrong!`);
+              }
+            });
+          function showPut(response) {
+            elUsersLoad.classList.remove("none");
+            const objectPut = JSON.parse(response.config.data);
+            const {id, email, username, password} = objectPut;
+            for (var i = 0; i < dataArray.length; i++) {
+              if (dataArray[i].id === id) {
+                dataArray[i] = objectPut;
+                elUsersLoad.classList.add("none");
+                break;
+              }
             }
-          });
-        function showPut(response) {
-          elUsersLoad.classList.remove("none");
-          const objectPut = JSON.parse(response.config.data);
-          const {id, email, username, password} = objectPut;
-          for (var i = 0; i < dataArray.length; i++) {
-            if (dataArray[i].id === id) {
-              dataArray[i] = objectPut;
-              elUsersLoad.classList.add("none");
-              break;
-            }
+            localStorage.setItem("users", JSON.stringify(dataArray));
+            changeItems(id - 1, username, email);
+            elUsersChangeForm.classList.add("none");
+            putStatus = response.status;
+            axiosStatus = true;
           }
-          localStorage.setItem("users", JSON.stringify(dataArray));
-          changeItems(id - 1, username, email);
-          elUsersChangeForm.classList.add("none");
-          putStatus = response.status;
         }
       } else {
         showToast("red", "Put right email! you@domain.abs");
@@ -271,7 +280,14 @@ function itemsAction(index) {
 }
 
 if (JSON.parse(localStorage.getItem("userStatus")).userEntered) {
-  startSearch();
+  let userError = true;
+  if (userError) {
+    userError = false;
+    setTimeout(() => {
+      startSearch();
+      userError = true;
+    }, 1300);
+  }
 }
 
 function checkInnerWidth() {
