@@ -40,6 +40,7 @@
 
   &__card {
     @include display();
+    position: relative;
     flex-direction: column;
     align-items: start;
     gap: 5px;
@@ -55,6 +56,18 @@
     width:100%;
     justify-content: start;
     order: -3 !important;
+  }
+
+  &__add {
+    @include hover();
+    position: absolute;
+    top: 8px;
+    // top: -15px;
+    right: 10px;
+    background-color:rgb(46, 57, 84);
+    padding: 2px;
+    border-radius: 4px;
+    color: white;
   }
 
   &__des {
@@ -294,6 +307,9 @@
   .users {
     padding: 10px;
 
+    &__add {
+      top: -25px;
+    }
     &__change-form {
       left: 35vw;
     }

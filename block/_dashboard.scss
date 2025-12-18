@@ -252,11 +252,16 @@
       display: none;
     }
 
+    &__top {
+      justify-content: center;
+      padding: 10px 0px;
+    }
+
     &__left-bottom {
       align-items: center;
       // padding: 0px;
       // background-color: red;
-      width: auto;
+      width: 100%;
       padding: 0px;
     }
     &__search {
@@ -316,11 +321,14 @@
     &__left-boxes {
       justify-content: center;
       padding: 20px 0px;
-      width: 60px !important;
+      width: 90% !important;
+      height: 50px;
     }
 
     &__left {
       height: 100%;
+      width: 50px !important;
+      max-width: none;
       align-items: center;
     }
   }
