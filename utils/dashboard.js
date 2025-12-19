@@ -86,7 +86,7 @@ let startStatus = true;
 elUsersLeftBoxes[1].addEventListener("click", () => {
   // if(startStatus) {
   // startStatus = true;
-  elUsersCard.innerHTML = `
+  elUsersCard.innerHTML = `    
       <div class="users__card-boxes users__card-boxes-first">
               <p class="users__des users__des-top">Name</p>
               <p class="users__des users__des-top">Email</p>
@@ -154,14 +154,21 @@ elUsersLeftBoxes[1].addEventListener("click", () => {
     }, 1000);
   }
 });
-function form() {
+function form() {  
   elUsersChangeForm = document.querySelector(".users__change-form");  
   elUsersChangeExit = document.querySelector(".users__change-exit");
   changeUsername = elUsersChangeForm["users-change-username"].value.trim();
   changeEmail = elUsersChangeForm["users-change-email"].value.trim();
   elUsersChangeSpanId = document.querySelector(".users__change-span-id");
   elUsersNewForm = document.querySelector(".users__new-form");
+  var elNewUsername = elUsersNewForm["new-username"];
+  var elNewEmail = elUsersNewForm["new-email"];
+  var elNewPassword = elUsersNewForm["new-password"];
   elUsersAdd = document.querySelector(".users__add");
+  elUsersNewClose = document.querySelector(".users__new-close");
+  elUsersNewClose.addEventListener("click", ()=> {
+    elUsersNewForm.classList.add("none");
+  })
   elUsersAdd.addEventListener("click", addF);
   newFormF();  
 }
