@@ -554,6 +554,12 @@ body {
   opacity: 1;
 }
 .users__des {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  justify-content: start;
+  gap: 5px;
   font-family: "Open Sans";
   color: rgb(16, 15, 15);
   width: 130px;
@@ -637,7 +643,7 @@ body {
   font-size: 14px;
 }
 .users__id {
-  padding: 7px 3px !important;
+  padding: 3px 3px !important;
 }
 .users__items {
   display: flex;

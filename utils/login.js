@@ -198,7 +198,7 @@ if (titleStatus) {
 function showToast(color, text) {
   Toastify({
     text: `${text}`,
-    duration: 5000, // 5 soniya
+    duration: 3000, // 5 soniya
     gravity: "top", // Yuqori qism
     position: "right", // O'ng tomon
     close: false,
