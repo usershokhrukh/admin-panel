@@ -78,14 +78,9 @@ elNight.addEventListener("click", () => {
 });
 
 const elUsersLeftBoxes = document.querySelectorAll(".dashboard__left-boxes");
-// const elUsersCard = document.querySelector(".users__card");
-// const elUsersTopSpan = document.querySelector(".users__top-span");
-// const elUsersLoad = document.querySelector(".users__loader");
 
 let startStatus = true;
 elUsersLeftBoxes[1].addEventListener("click", () => {
-  // if(startStatus) {
-  // startStatus = true;
   elUsersCard.innerHTML = `    
       <div class="users__card-boxes users__card-boxes-first">
               <p class="users__des users__des-top">Name</p>

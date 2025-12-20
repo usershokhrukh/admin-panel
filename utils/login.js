@@ -67,12 +67,6 @@ elLogin.addEventListener("submit", (e) => {
           }, 5000);
         }
       });
-    // if (!localStorage.getItem("users")) {
-
-    // } else {
-    //   objectDataLocal = JSON.parse(localStorage.getItem("users"));
-    //   tokenGet(objectDataLocal);
-    // }
   } else {
     elLoader.classList.remove("none");
     elButtonSpan.classList.add("none");
@@ -223,24 +217,11 @@ function blackWhite(color) {
   const elNavbarName = document.querySelector(".dashboard__navbar-name");
   const elUserTitle = document.querySelector(".users__title");
   const elUsersTopText = document.querySelector(".users__top-text");
-  // const elUsersTopSpan = document.querySelector(".users__top-span");
   const elUsersDes = document.querySelectorAll(".users__des");
   const elUsersItemsTopName = document.querySelectorAll(
     ".users__items-top-name"
   );
-  // const elUsersName = document.querySelectorAll(".users-name");
-  // const elUsersEmail = document.querySelectorAll(".users-email");
-  // const elUsersPhone = document.querySelectorAll(".users-phone");
-  // const elUsersRegister = document.querySelectorAll(".users-register");
-  // const elUsersUsername = document.querySelectorAll(".users-username");
-  // const elUsersCard = document.querySelector(".users__card");
-  // const elUsersView = document.querySelectorAll(".users-view");
-  // const elUsersEdit = document.querySelectorAll(".users-edit");
-  // const elUsersDelete = document.querySelectorAll(".users-delete");
-  // const elUsersLoad = document.querySelector(".users__loader");
-  // const elUsersActionDot = document.querySelectorAll(".users__action-dot");
   const elUsersArrow = document.querySelectorAll(".users-arrow");
-  // const elUsersItemsBottom = document.querySelectorAll(".users__items-bottom");
   const elUsersItems = document.querySelectorAll(".users__items");
   if (color) {
     elDay.classList.remove("none");

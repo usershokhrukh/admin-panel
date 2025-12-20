@@ -176,7 +176,8 @@ function startSearch() {
             <svg class="users__add" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0001 10.9999L22.0002 10.9997L22.0002 12.9997L13.0001 12.9999L13.0001 21.9998L11.0001 21.9998L11.0001 12.9999L2.00004 13.0001L2 11.0001L11.0001 10.9999L11 2.00025L13 2.00024L13.0001 10.9999Z"></path></svg>
     `;
   form();
-  function innerData(users) {
+  function innerData(users) {    2
+    dataArray = [];
     users.map(({email, name, phone, username, id, password}, index) => {
       dataArray.push({
         id,
@@ -251,7 +252,7 @@ function startSearch() {
       .get("https://fakestoreapi.com/users")
       .then((response) => innerData(response.data));
   } else if (localStorage.getItem("users")) {
-    let objectDataLocal = JSON.parse(localStorage.getItem("users"));
+    let objectDataLocal = JSON.parse(localStorage.getItem("users"));    
     innerData(objectDataLocal);
   }
 }
@@ -296,11 +297,13 @@ function eventForm() {
       if (!changeToast) {
         if (changeEmail && changeUsername) {
           if (email === changeEmail && username === changeUsername) {
+            form();
             elUsersLoad.classList.add("none");
             showToast("red", `Please send new Email & Username!`);
           } else if (!checkEmail) {
             if (changeUsername.length > 15) {
               elUsersLoad.classList.add("none");
+              form();
               showToast("red", "New username is so large!");
             } else {
               const regexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -324,6 +327,7 @@ function eventForm() {
                     )
                     .then((response) => showPut(response))
                     .catch((error) => {
+                      form();
                       axiosStatus = true;
                       errorStatusUsers = true;
                       elUsersLoad.classList.add("none");
@@ -348,9 +352,11 @@ function eventForm() {
                     errorStatusUsers = true;
                     showFormData(id - 1);
                     elUsersChangeSpanId.textContent = `for- ${changeUsername}`;
+                    elUsersChangeForm.classList.add("none");
                   }
                 }
               } else {
+                form();
                 elUsersLoad.classList.add("none");
                 showToast("red", "Put right email! you@domain.abs");
               }
@@ -372,6 +378,7 @@ function eventForm() {
             }
           }
         } else {
+          form();
           elUsersLoad.classList.add("none");
           showToast("red", "Fill Email & Username!");
         }
@@ -422,7 +429,10 @@ function itemsAction(index) {
     elUsersChangeSpanId.textContent = `for- ${idForSpan}`;
     elUsersChangeForm.classList.remove("none");
     showFormData(index);
+    form();
   });
+
+  form();
 }
 
 if (JSON.parse(localStorage.getItem("userStatus")).userEntered) {
@@ -440,7 +450,6 @@ function checkInnerWidth() {
   const elUsersItemsBottom = document.querySelectorAll(".users__items-bottom");
   const elUsersArrow = document.querySelectorAll(".users-arrow");
   const elUserBox = document.querySelectorAll(".users__box");
-
   if (window.innerWidth > 1100) {
     for (var i = 0; i < elUsersItemsBottom.length; i++) {
       elUsersItemsBottom[i].classList.remove("none");
@@ -457,60 +466,61 @@ function addF() {
 }
 let errorPost = true;
 let postGetStatus = false;
+let errorSubmit = true;
 function eventNewFormF() {
-  postGetStatus = false;
-  let newToastStatus = true;
-  var elNewUsername = elUsersNewForm["new-username"].value.trim();
-  var elNewEmail = elUsersNewForm["new-email"].value.trim();
-  var elNewPassword = elUsersNewForm["new-password"].value.trim();
-  const regexpNewEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  elUsersNewForm.addEventListener("submit", showToast("red", "Wait!"));
-  elUsersLoad.classList.remove("none");
-  if (newToastStatus) {
-    newToastStatus = false;
-    if (elNewUsername && elNewEmail && elNewPassword) {
-      if (regexpNewEmail.test(`${elNewEmail}`)) {
-        if (!(elNewUsername.length > 15)) {
-          elUsersItems = document.querySelectorAll(".users__items");
-          let postObject = {
-            id: elUsersItems.length + 1,
-            username: elNewUsername,
-            email: elNewEmail,
-            password: elNewPassword,
-            name: {
-              firstname: elNewUsername,
-              lastname: "",
-            },
-            phone: "990007953",
-          };
-          const postApi = "https://fakestoreapi.com/users";
-          setTimeout(() => {
-            if (!postGetStatus) {
-              elUsersLoad.classList.add("none");
-              errorPost = true;
-              postGetStatus = true;
-              showToast("red", "Try again!");
-            }
-          }, 3000);
-          axios
-            .post(postApi, postObject)
-            .then((response) => postGetF(response))
-            .catch((error) => {
-              elUsersLoad.classList.add("none");
-              showToast("red", "Something went wrong!");
-            });
+    postGetStatus = false;
+    let newToastStatus = true;
+    var elNewUsername = elUsersNewForm["new-username"].value.trim();
+    var elNewEmail = elUsersNewForm["new-email"].value.trim();
+    var elNewPassword = elUsersNewForm["new-password"].value.trim();
+    const regexpNewEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    elUsersNewForm.addEventListener("submit", showToast("red", "Wait!"));
+    elUsersLoad.classList.remove("none");
+    if (newToastStatus) {
+      newToastStatus = false;
+      if (elNewUsername && elNewEmail && elNewPassword) {
+        if (regexpNewEmail.test(`${elNewEmail}`)) {
+          if (!(elNewUsername.length > 15)) {
+            elUsersItems = document.querySelectorAll(".users__items");
+            let postObject = {
+              id: elUsersItems.length + 1,
+              username: elNewUsername,
+              email: elNewEmail,
+              password: elNewPassword,
+              name: {
+                firstname: elNewUsername,
+                lastname: "",
+              },
+              phone: "990007953",
+            };
+            const postApi = "https://fakestoreapi.com/users";
+            setTimeout(() => {
+              if (!postGetStatus) {
+                elUsersLoad.classList.add("none");
+                errorPost = true;
+                postGetStatus = true;
+                showToast("red", "Try again!");
+              }
+            }, 3000);
+            axios
+              .post(postApi, postObject)
+              .then((response) => postGetF(response))
+              .catch((error) => {
+                elUsersLoad.classList.add("none");
+                showToast("red", "Something went wrong!");
+              });
 
-          function postGetF(response) {
-            postGetStatus = true;
-            const responsePostObject = JSON.parse(response.config.data);
-            const {email, name, phone, username, id, password} =
-              responsePostObject;
-            elUsersCard.innerHTML += `
+            function postGetF(response) {
+              postGetStatus = true;
+              const responsePostObject = JSON.parse(response.config.data);
+              const {email, name, phone, username, id, password} =
+                responsePostObject;
+              elUsersCard.innerHTML += `
               <div class="users__items">
                   <div class="users__items-top">
                   <p class="users__items-top-name"><span class="users__id-second">${id}</span> <span class="users-top-name-span">${
-              name.firstname
-            } ${name.lastname}</span></p>
+                name.firstname
+              } ${name.lastname}</span></p>
                           <svg class="users-arrow users__arrow" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
                         </div>
                         <div class="users__items-bottom">
@@ -523,8 +533,8 @@ function eventNewFormF() {
                           </div>
                           <div class="users__items-bottom-right">
                             <p class="users__des user-name"><span class="users__id">${id}</span> <span class="users-name-span"> ${
-              name.firstname
-            } ${name.lastname}</span></p>
+                name.firstname
+              } ${name.lastname}</span></p>
                             <p class="users__des user-email">${email}</p>
                             <p class="users__des user-phone">${phone.replaceAll(
                               "-",
@@ -546,51 +556,53 @@ function eventNewFormF() {
                         </div>
                       </div>
                 `;
-            elUsersTopSpan.textContent = `${id}`;
-            dataArray.push(responsePostObject);
-            elUsersItems = document.querySelectorAll(".users__items");
-            for (var i = 0; i < elUsersItems.length; i++) {
-              itemsAction(i);
-            }
+              elUsersTopSpan.textContent = `${id}`;
+              
+              dataArray.push(responsePostObject);              
+              elUsersItems = document.querySelectorAll(".users__items");
+              for (var i = 0; i < elUsersItems.length; i++) {
+                itemsAction(i);
+              }
 
-            showToast("green", "Added!");
+              showToast("green", "Added!");
+              elUsersLoad.classList.add("none");
+              errorPost = true;
+              form();
+              eventForm();
+              localStorage.setItem("users", JSON.stringify(dataArray));
+              elUsersNewForm = document.querySelector(".users__new-form");
+              elUsersNewForm.disabled = false;
+              const dayLight = JSON.parse(localStorage.getItem("dayNight"));
+              blackWhite(dayLight.dayNight);
+              elUsersNewForm = document.querySelector(".users__new-form");
+              elUsersNewForm.disabled = true;
+              elUsersNewForm.classList.add("none");
+            }
+          } else {
             elUsersLoad.classList.add("none");
             errorPost = true;
-            form();
-            eventForm();
-            localStorage.setItem("users", JSON.stringify(dataArray));
-            elUsersNewForm = document.querySelector(".users__new-form");
-            elUsersNewForm.disabled = false;
-            const dayLight = JSON.parse(localStorage.getItem("dayNight"));
-            blackWhite(dayLight.dayNight);
-            elUsersNewForm = document.querySelector(".users__new-form");
-            elUsersNewForm.disabled = true;
+            postGetStatus = true;
+            showToast("red", "New username is so large!");
           }
         } else {
           elUsersLoad.classList.add("none");
           errorPost = true;
           postGetStatus = true;
-          showToast("red", "New username is so large!");
+          showToast("red", "Put right email! you@domain.abs");
         }
       } else {
         elUsersLoad.classList.add("none");
         errorPost = true;
         postGetStatus = true;
-        showToast("red", "Put right email! you@domain.abs");
+        showToast("red", "Fill all inputs, required!");
       }
-    } else {
-      elUsersLoad.classList.add("none");
-      errorPost = true;
-      postGetStatus = true;
-      showToast("red", "Fill all inputs, required!");
+      setTimeout(() => {
+        newToastStatus = true;
+      }, 2000);
     }
-    setTimeout(() => {
-      newToastStatus = true;
-    }, 2000);
-  }
 }
 function newFormF() {
-  elUsersNewForm.removeEventListener("click", submitRemove);
+  elUsersNewForm.removeEventListener("submit", submitRemove);
   elUsersNewForm.addEventListener("submit", submitRemove);
 }
 
@@ -601,7 +613,6 @@ function submitRemove(e) {
     elUsersLoad.classList.remove("none");
     eventNewFormF();
   } else {
-    console.log("1");
     showToast("red", "Wait!");
     elUsersLoad.classList.remove("none");
   }
