@@ -159,7 +159,7 @@ elLogin.addEventListener("submit", (e) => {
               </div>
             </div>
             <svg class="users__add" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0001 10.9999L22.0002 10.9997L22.0002 12.9997L13.0001 12.9999L13.0001 21.9998L11.0001 21.9998L11.0001 12.9999L2.00004 13.0001L2 11.0001L11.0001 10.9999L11 2.00025L13 2.00024L13.0001 10.9999Z"></path></svg>
-    `;  
+    `;
     dataUser.userEntered = true;
     const jsonAdmin = JSON.stringify(dataUser);
     localStorage.setItem("jsonAdmin", jsonAdmin);
@@ -223,6 +223,10 @@ function blackWhite(color) {
   );
   const elUsersArrow = document.querySelectorAll(".users-arrow");
   const elUsersItems = document.querySelectorAll(".users__items");
+  const elUsersChangeFormDark = document.querySelector(".users__change-form");
+  const elUsersNewFormDark = document.querySelector(".users__new-form");
+  const elUsersDeleteForm = document.querySelector(".users__delete-form");
+
   if (color) {
     elDay.classList.remove("none");
     elNight.classList.add("none");
@@ -238,6 +242,11 @@ function blackWhite(color) {
       elUsersItems[i].classList.add("items-black");
       elUsersArrow[i].classList.add("name-white");
     }
+    if (elUsersChangeFormDark && elUsersNewFormDark) {
+      elUsersChangeFormDark.classList.add("dark-form");
+      elUsersNewFormDark.classList.add("dark-form");
+    }
+    elUsersDeleteForm.classList.add("dark-form");
   } else {
     elDay.classList.add("none");
     elNight.classList.remove("none");
@@ -245,6 +254,12 @@ function blackWhite(color) {
     elNavbarName.classList.remove("name-white");
     elUserTitle.classList.remove("name-white");
     elUsersTopText.classList.remove("name-white");
+    elUsersDeleteForm.classList.remove("dark-form");
+    if (elUsersChangeFormDark && elUsersNewFormDark) {
+      elUsersChangeFormDark.classList.remove("dark-form");
+      elUsersNewFormDark.classList.remove("dark-form");
+    }
+
     for (var i = 0; i < elUsersDes.length; i++) {
       elUsersDes[i].classList.remove("name-white");
     }
@@ -254,5 +269,6 @@ function blackWhite(color) {
       elUsersItems[i].classList.remove("items-black");
       elUsersArrow[i].classList.remove("name-white");
     }
+
   }
 }
