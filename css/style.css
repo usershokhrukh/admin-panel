@@ -46,6 +46,23 @@ body {
     transform: translateY(0px);
   }
 }
+.right-button {
+  background-color: rgba(138, 20, 20, 0.722) !important;
+  opacity: 1 !important;
+}
+
+.white-delete {
+  background-color: rgba(195, 195, 195, 0.766) !important;
+}
+
+.dark-form {
+  background-color: rgba(42, 44, 58, 0.8) !important;
+}
+
+.opacity {
+  opacity: 0.5 !important;
+}
+
 .login {
   display: flex;
   align-items: center;
@@ -712,7 +729,7 @@ body {
   align-items: start;
   gap: 10px;
   width: 100%;
-  background-color: rgba(63, 67, 94, 0.6);
+  background-color: rgba(216, 216, 216, 0.766);
   border: 1px solid rgb(27, 118, 112);
   padding: 30px 20px 20px 20px;
   border-radius: 5px;
@@ -731,7 +748,7 @@ body {
 }
 .users__change-label {
   font-family: "Open Sans";
-  color: rgb(201, 199, 199);
+  color: rgb(158, 158, 158);
 }
 .users__change-input {
   font-family: "Open Sans";
@@ -792,7 +809,7 @@ body {
   padding: 30px 20px 20px 20px;
   border-radius: 10px;
   width: 100%;
-  background-color: rgba(63, 67, 94, 0.6);
+  background-color: rgba(216, 216, 216, 0.766);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   border: 1px solid rgb(27, 118, 112);
@@ -857,6 +874,101 @@ body {
   gap: 5px;
   order: -3;
 }
+.users__delete-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 6 !important;
+  top: 40vh;
+  left: 38vw;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+  padding: 15px;
+  background-color: rgba(216, 216, 216, 0.766);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  border-radius: 5px;
+  border: 1px solid rgb(138, 20, 20);
+}
+.users__delete-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-family: "Open sans";
+  font-size: 20px;
+  color: rgb(188, 14, 14);
+}
+.users__delete-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 10px;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+  padding: 2px 10px 15px 10px;
+  border-radius: 8px;
+  border-left: 1.4px solid rgb(87, 87, 87);
+}
+.users__delete-label {
+  position: relative;
+  top: -10px;
+  left: -5px;
+  font-family: "Open Sans";
+  color: gray;
+  font-size: 14px;
+  background-color: rgb(43, 45, 56);
+  padding: 3px;
+  border-radius: 3px;
+  border: 0.5px solid rgba(255, 0, 0, 0.555);
+  opacity: 0.5;
+}
+.users__delete-input {
+  position: relative;
+  bottom: -25px;
+  left: -5px;
+  border: none;
+  border-radius: 4px;
+  font-family: "Open sans";
+  outline: none;
+  padding: 5px;
+  font-size: 14px;
+  background-color: rgba(36, 37, 43, 0.7);
+  color: white;
+}
+.users__delete-button {
+  font-family: "Open sans";
+  padding: 2px 10px;
+  width: 100%;
+  background-color: rgb(43, 45, 56);
+  border: 1px solid rgba(255, 0, 0, 0.663);
+  border-radius: 5px;
+  font-size: 14px;
+  color: white;
+  opacity: 0.5;
+}
+.users__delete-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  width: 100%;
+  gap: 5px;
+}
+.users__delete-cancel {
+  border: none;
+  padding: 2px 10px;
+  border-radius: 5px;
+  background-color: rgb(42, 162, 42);
+  color: white;
+  font-family: "Open sans";
+  font-size: 14px;
+  border: 1px solid rgb(42, 162, 42);
+}
 
 @keyframes show-des {
   0% {
@@ -869,6 +981,16 @@ body {
 @media (max-width: 1100px) {
   .users {
     padding: 10px;
+  }
+  .users__deleted-text {
+    display: none !important;
+  }
+  .users__delete-title {
+    font-size: 13px;
+  }
+  .users__delete-form {
+    top: 25vh;
+    left: 30vw;
   }
   .users__add {
     top: -25px;
@@ -904,6 +1026,14 @@ body {
   }
   .users__change-form {
     padding: 15px 10px 15px 10px;
+  }
+  .users__delete-title {
+    font-size: 10px;
+  }
+  .users__delete-form {
+    top: 10%;
+    left: 10%;
+    right: 10%;
   }
   .users__change-label {
     font-size: 12px;

@@ -175,28 +175,40 @@ function startSearch() {
             <svg class="users__add" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0001 10.9999L22.0002 10.9997L22.0002 12.9997L13.0001 12.9999L13.0001 21.9998L11.0001 21.9998L11.0001 12.9999L2.00004 13.0001L2 11.0001L11.0001 10.9999L11 2.00025L13 2.00024L13.0001 10.9999Z"></path></svg>
     `;
   form();
-  function innerData(users) {    2
+  function innerData(users) {
     dataArray = [];
-    users.map(({email, name, phone, username, id, password}, index) => {
-      dataArray.push({
-        id,
-        username,
-        email,
-        password,
-        phone,
-        name,
-      });
-      itemsStatus();
-      elUsersTopSpan.textContent = `${id}`;
-      function itemsStatus() {
-        elUsersItems = document.querySelectorAll(".users__items");
-        elUsersLoad.classList.add("none");
-        elUsersCard.innerHTML += `
+    users.map(
+      ({email, name, phone, username, id, password, deleted}, index) => {
+        if (!deleted) {
+          deleted = false;
+        }
+        const elUsersDeleteForm = document.querySelector(".users__delete-form");
+        elUsersDeleteForm.reset();
+        elUsersDeleteForm.classList.add("none");
+        dataArray.push({
+          id,
+          username,
+          email,
+          password,
+          phone,
+          name,
+          deleted,
+        });
+        itemsStatus();
+        elUsersTopSpan.textContent = `${id}`;
+        function itemsStatus() {
+          elUsersItems = document.querySelectorAll(".users__items");
+          elUsersLoad.classList.add("none");
+          elUsersCard.innerHTML += `
         <div class="users__items">
         <div class="users__items-top">
                 <p class="users__items-top-name"><span class="users__id-second">${id}</span> <span class="users-top-name-span">${
-          name.firstname
-        } ${name.lastname}</span></p>
+            name.firstname
+          } ${name.lastname}</span>
+        <span class="users__deleted none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 16 16"><path fill="#d11515" fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1M4 7.5v1h8v-1z" clip-rule="evenodd"/></svg>
+        </span>
+        </p>
                 <svg class="users-arrow users__arrow" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
               </div>
               <div class="users__items-bottom">
@@ -209,8 +221,8 @@ function startSearch() {
                 </div>
                 <div class="users__items-bottom-right">
                   <p class="users__des user-name"><span class="users__id">${id}</span> <span class="users-name-span"> ${
-          name.firstname
-        } ${name.lastname}</span></p>
+            name.firstname
+          } ${name.lastname}</span></p>
                   <p class="users__des user-email">${email}</p>
                   <p class="users__des user-phone">${phone.replaceAll(
                     "-",
@@ -218,6 +230,9 @@ function startSearch() {
                   )}</p>
                   <p class="users__des user-register">15.12.25 7:48</p>
                   <p class="users__des user-username">${username}</p>
+                  <span class="users__deleted-text none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 16 16"><path fill="#d11515" fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1M4 7.5v1h8v-1z" clip-rule="evenodd"/></svg>
+                  </span>
                   <div class="users__action">
                     <svg class="users__action-dot" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"/></svg>
                     <div class="users__box hidden">
@@ -231,26 +246,32 @@ function startSearch() {
               </div>
             </div>
         `;
+        if(deleted) {
+          const elUsersActionDot = document.querySelectorAll(".users__action-dot");
+          elUsersActionDot[id-1].classList.add("none");
+        }
 
-        itemsAction(elUsersItems.length);
-        for (var i = 0; i < elUsersItems.length; i++) {
-          itemsAction(i);
+          itemsAction(elUsersItems.length);
+          for (var i = 0; i < elUsersItems.length; i++) {
+            itemsAction(i);
+          }
         }
       }
-    });
+    );
     form();
     eventForm();
     blackWhite(JSON.parse(localStorage.getItem("dayNight")).dayNight);
     elUsersChangeExit.addEventListener("click", () => {
       elUsersChangeForm.classList.add("none");
     });
+    deletedF();
   }
   if (!localStorage.getItem("users")) {
     axios
       .get("https://fakestoreapi.com/users")
       .then((response) => innerData(response.data));
   } else if (localStorage.getItem("users")) {
-    let objectDataLocal = JSON.parse(localStorage.getItem("users"));    
+    let objectDataLocal = JSON.parse(localStorage.getItem("users"));
     innerData(objectDataLocal);
   }
 }
@@ -400,37 +421,58 @@ function changeItems(index, username, email) {
   userUsername[index].textContent = `${username}`;
 }
 
-function itemsAction(index) {
-  const elUsersActionDot = document.querySelectorAll(".users__action-dot");
+function itemsAction(index_2) {
   const elUsersArrow = document.querySelectorAll(".users-arrow");
   const elUsersItemsBottom = document.querySelectorAll(".users__items-bottom");
-  const elUserBox = document.querySelectorAll(".users__box");
-  const elUsersEdit = document.querySelectorAll(".users-edit");
-  elUsersActionDot[index].addEventListener("click", () => {
-    elUserBox[index].classList.toggle("hidden");
-    for (var i = 0; i < elUserBox.length; i++) {
-      if (index != i) {
-        elUserBox[i].classList.add("hidden");
-      }
-    }
+
+  elUsersArrow[index_2].addEventListener("click", () => {
+    elUsersItemsBottom[index_2].classList.toggle("none");
+    elUsersArrow[index_2].classList.toggle("arrow-rotate");
   });
-  elUsersArrow[index].addEventListener("click", () => {
-    elUsersItemsBottom[index].classList.toggle("none");
-    elUsersArrow[index].classList.toggle("arrow-rotate");
-  });
-  elUsersEdit[index].addEventListener("click", () => {
-    form();
-    const elUsersChangeSpanId = document.querySelector(
-      ".users__change-span-id"
-    );
-    const idForSpan = `${dataArray[index].username}`;
-    elUsersChangeSpanId.textContent = `for- ${idForSpan}`;
-    elUsersChangeForm.classList.remove("none");
-    showFormData(index);
-    form();
-  });
+  if (!dataArray[index_2].deleted) {
+    actionItemsF(index_2);
+  }
 
   form();
+}
+
+function actionItemsF(index) {
+  const elUserBox = document.querySelectorAll(".users__box");
+  const elUsersEdit = document.querySelectorAll(".users-edit");
+  const elUsersDelete = document.querySelectorAll(".users-delete");
+  const elUsersActionDot = document.querySelectorAll(".users__action-dot");
+    elUsersActionDot[index].addEventListener("click", () => {
+      elUserBox[index].classList.toggle("hidden");
+      for (var i = 0; i < elUserBox.length; i++) {
+        if (index != i) {
+          elUserBox[i].classList.add("hidden");
+        }
+      }
+    });
+
+    elUsersEdit[index].addEventListener("click", () => {
+      form();
+      const elUsersDeleteForm = document.querySelector(".users__delete-form");
+      elUsersDeleteForm.reset();
+      elUsersDeleteForm.classList.add("none");
+      const elUsersChangeSpanId = document.querySelector(
+        ".users__change-span-id"
+      );
+      const idForSpan = `${dataArray[index].username}`;
+      elUsersChangeSpanId.textContent = `for- ${idForSpan}`;
+      elUsersChangeForm.classList.remove("none");
+      showFormData(index);
+      form();
+    });
+
+    elUsersDelete[index].addEventListener("click", () => {
+      form();
+      const elUsersDeleteForm = document.querySelector(".users__delete-form");
+      elUsersDeleteForm.classList.remove("none");
+      deleteSpanChange(index);
+      deletePostItem(deleteId, dataArray[deleteId - 1].username);
+      form();
+    });
 }
 
 if (JSON.parse(localStorage.getItem("userStatus")).userEntered) {
@@ -466,59 +508,68 @@ let errorPost = true;
 let postGetStatus = false;
 let errorSubmit = true;
 function eventNewFormF() {
-    postGetStatus = false;
-    let newToastStatus = true;
-    var elNewUsername = elUsersNewForm["new-username"].value.trim();
-    var elNewEmail = elUsersNewForm["new-email"].value.trim();
-    var elNewPassword = elUsersNewForm["new-password"].value.trim();
-    const regexpNewEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    elUsersNewForm.addEventListener("submit", showToast("red", "Wait!"));
-    elUsersLoad.classList.remove("none");
-    if (newToastStatus) {
-      newToastStatus = false;
-      if (elNewUsername && elNewEmail && elNewPassword) {
-        if (regexpNewEmail.test(`${elNewEmail}`)) {
-          if (!(elNewUsername.length > 15)) {
-            elUsersItems = document.querySelectorAll(".users__items");
-            let postObject = {
-              id: elUsersItems.length + 1,
-              username: elNewUsername,
-              email: elNewEmail,
-              password: elNewPassword,
-              name: {
-                firstname: elNewUsername,
-                lastname: "",
-              },
-              phone: "990007953",
-            };
-            const postApi = "https://fakestoreapi.com/users";
-            setTimeout(() => {
-              if (!postGetStatus) {
-                elUsersLoad.classList.add("none");
-                errorPost = true;
-                postGetStatus = true;
-                showToast("red", "Try again!");
-              }
-            }, 3000);
-            axios
-              .post(postApi, postObject)
-              .then((response) => postGetF(response))
-              .catch((error) => {
-                elUsersLoad.classList.add("none");
-                showToast("red", "Something went wrong!");
-              });
-
-            function postGetF(response) {
+  postGetStatus = false;
+  let newToastStatus = true;
+  var elNewUsername = elUsersNewForm["new-username"].value.trim();
+  var elNewEmail = elUsersNewForm["new-email"].value.trim();
+  var elNewPassword = elUsersNewForm["new-password"].value.trim();
+  const regexpNewEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  elUsersNewForm.addEventListener("submit", showToast("red", "Wait!"));
+  elUsersLoad.classList.remove("none");
+  if (newToastStatus) {
+    newToastStatus = false;
+    if (elNewUsername && elNewEmail && elNewPassword) {
+      if (regexpNewEmail.test(`${elNewEmail}`)) {
+        if (!(elNewUsername.length > 15)) {
+          elUsersItems = document.querySelectorAll(".users__items");
+          let postObject = {
+            id: elUsersItems.length + 1,
+            username: elNewUsername,
+            email: elNewEmail,
+            password: elNewPassword,
+            name: {
+              firstname: elNewUsername,
+              lastname: "",
+            },
+            phone: "990007953",
+          };
+          const postApi = "https://fakestoreapi.com/users";
+          setTimeout(() => {
+            if (!postGetStatus) {
+              elUsersLoad.classList.add("none");
+              errorPost = true;
               postGetStatus = true;
-              const responsePostObject = JSON.parse(response.config.data);
-              const {email, name, phone, username, id, password} =
-                responsePostObject;
-              elUsersCard.innerHTML += `
+              showToast("red", "Try again!");
+            }
+          }, 3000);
+          axios
+            .post(postApi, postObject)
+            .then((response) => postGetF(response))
+            .catch((error) => {
+              elUsersLoad.classList.add("none");
+              showToast("red", "Something went wrong!");
+            });
+
+          function postGetF(response) {
+            postGetStatus = true;
+            const elUsersDeleteForm = document.querySelector(
+              ".users__delete-form"
+            );
+            elUsersDeleteForm.reset();
+            elUsersDeleteForm.classList.add("none");
+            const responsePostObject = JSON.parse(response.config.data);
+            const {email, name, phone, username, id, password} =
+              responsePostObject;
+            elUsersCard.innerHTML += `
               <div class="users__items">
                   <div class="users__items-top">
                   <p class="users__items-top-name"><span class="users__id-second">${id}</span> <span class="users-top-name-span">${
-                name.firstname
-              } ${name.lastname}</span></p>
+              name.firstname
+            } ${name.lastname}</span>
+              <span class="users__deleted none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 16 16"><path fill="#d11515" fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1M4 7.5v1h8v-1z" clip-rule="evenodd"/></svg>
+              </span>
+              </p>
                           <svg class="users-arrow users__arrow" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
                         </div>
                         <div class="users__items-bottom">
@@ -531,8 +582,9 @@ function eventNewFormF() {
                           </div>
                           <div class="users__items-bottom-right">
                             <p class="users__des user-name"><span class="users__id">${id}</span> <span class="users-name-span"> ${
-                name.firstname
-              } ${name.lastname}</span></p>
+              name.firstname
+            } ${name.lastname}</span>
+                            </p>
                             <p class="users__des user-email">${email}</p>
                             <p class="users__des user-phone">${phone.replaceAll(
                               "-",
@@ -540,6 +592,9 @@ function eventNewFormF() {
                             )}</p>
                             <p class="users__des user-register">15.12.25 7:48</p>
                             <p class="users__des user-username">${username}</p>
+                            <span class="users__deleted-text none">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 16 16"><path fill="#d11515" fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1M4 7.5v1h8v-1z" clip-rule="evenodd"/></svg>
+                            </span>
                             <div class="users__action">
                               <svg class="users__action-dot" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"/></svg>
                               <div class="users__box hidden">
@@ -553,50 +608,50 @@ function eventNewFormF() {
                         </div>
                       </div>
                 `;
-              elUsersTopSpan.textContent = `${id}`;
-              
-              dataArray.push(responsePostObject);              
-              elUsersItems = document.querySelectorAll(".users__items");
-              for (var i = 0; i < elUsersItems.length; i++) {
-                itemsAction(i);
-              }
+            elUsersTopSpan.textContent = `${id}`;
 
-              showToast("green", "Added!");
-              elUsersLoad.classList.add("none");
-              errorPost = true;
-              form();
-              eventForm();
-              localStorage.setItem("users", JSON.stringify(dataArray));
-              elUsersNewForm = document.querySelector(".users__new-form");
-              elUsersNewForm.disabled = false;
-              const dayLight = JSON.parse(localStorage.getItem("dayNight"));
-              blackWhite(dayLight.dayNight);
-              elUsersNewForm = document.querySelector(".users__new-form");
-              elUsersNewForm.disabled = true;
-              elUsersNewForm.classList.add("none");
+            dataArray.push(responsePostObject);
+            elUsersItems = document.querySelectorAll(".users__items");
+            for (var i = 0; i < elUsersItems.length; i++) {
+              itemsAction(i);
             }
-          } else {
+
+            showToast("green", "Added!");
             elUsersLoad.classList.add("none");
             errorPost = true;
-            postGetStatus = true;
-            showToast("red", "New username is so large!");
+            form();
+            eventForm();
+            localStorage.setItem("users", JSON.stringify(dataArray));
+            elUsersNewForm = document.querySelector(".users__new-form");
+            elUsersNewForm.disabled = false;
+            const dayLight = JSON.parse(localStorage.getItem("dayNight"));
+            blackWhite(dayLight.dayNight);
+            elUsersNewForm = document.querySelector(".users__new-form");
+            elUsersNewForm.disabled = true;
+            elUsersNewForm.classList.add("none");
           }
         } else {
           elUsersLoad.classList.add("none");
           errorPost = true;
           postGetStatus = true;
-          showToast("red", "Put right email! you@domain.abs");
+          showToast("red", "New username is so large!");
         }
       } else {
         elUsersLoad.classList.add("none");
         errorPost = true;
         postGetStatus = true;
-        showToast("red", "Fill all inputs, required!");
+        showToast("red", "Put right email! you@domain.abs");
       }
-      setTimeout(() => {
-        newToastStatus = true;
-      }, 2000);
+    } else {
+      elUsersLoad.classList.add("none");
+      errorPost = true;
+      postGetStatus = true;
+      showToast("red", "Fill all inputs, required!");
     }
+    setTimeout(() => {
+      newToastStatus = true;
+    }, 2000);
+  }
 }
 function newFormF() {
   elUsersNewForm.removeEventListener("submit", submitRemove);
@@ -615,3 +670,126 @@ function submitRemove(e) {
   }
 }
 newFormF();
+
+let deleteId = 1;
+let deleteItem = {
+  id: null,
+  username: null,
+};
+
+function deletePostItem(id, username) {
+  deleteItem.id = id;
+  deleteItem.username = username;
+}
+function deleteSpanChange(index) {
+  form();
+  const elUsersDeleteForm = document.querySelector(".users__delete-form");
+  elUsersDeleteForm.reset();
+  const elUsersDeleteLabel = document.querySelector(".users__delete-label");
+  deleteId = index + 1;
+  for (var i = 0; i < dataArray.length; i++) {
+    if (dataArray[i].id === index + 1) {
+      elUsersDeleteLabel.textContent = `${dataArray[i].username}`;
+    }
+  }
+}
+
+function deleteFormF() {
+  const elUsersDeleteForm = document.querySelector(".users__delete-form");
+  elUsersDeleteForm.removeEventListener("submit", deleteRemoveF);
+  elUsersDeleteForm.addEventListener("submit", deleteRemoveF);
+}
+
+deleteFormF();
+
+function deleteRemoveF(e) {
+  e.preventDefault();
+  deleteFormSubmitStart();
+}
+
+let elDeleteInput = document.querySelector(".users__delete-input");
+let elDeleteCancel = document.querySelector(".users__delete-cancel");
+let deleteToastStatus = true;
+let deleteAxios = true;
+function deleteFormSubmitStart() {
+  if (deleteAxios) {
+    if (deleteToastStatus) {
+      deleteToastStatus = false;
+      if (elDeleteInput.value === deleteItem.username) {
+        deleteAxios = false;
+        showToast("red", "Wait!");
+        axios
+          .delete(`https://fakestoreapi.com/users/${deleteId}`)
+          .then((response) => deletedGreen())
+          .catch((error) => {
+            const elUsersDeleteForm = document.querySelector(
+              ".users__delete-form"
+            );
+            elUsersDeleteForm.reset();
+            elUsersDeleteForm.classList.add("none");
+
+            deleteAxios = true;
+            showToast("red", "Something went wrong!");
+          });
+
+        function deletedGreen() {
+          const elUsersDeleteForm = document.querySelector(
+            ".users__delete-form"
+          );
+          elUsersDeleteForm.reset();
+          elUsersDeleteForm.classList.add("none");
+          dataArray[deleteId - 1].deleted = true;
+          localStorage.setItem("users", JSON.stringify(dataArray));
+          deletedF();
+          deleteAxios = true;
+          const elUsersActionDot = document.querySelectorAll(".users__action-dot");
+          elUsersActionDot[deleteId-1].classList.add("none");
+          showToast("green", "Deleted!");
+        }
+      } else {
+        showToast("red", "For delete enter right username!");
+      }
+      setTimeout(() => {
+        deleteToastStatus = true;
+      }, 3000);
+    }
+  }
+}
+
+elDeleteInput.addEventListener("input", (e) => {
+  const deleteInputValue = e.target.value;
+  const elUsersDeleteButton = document.querySelector(".users__delete-button");
+  if (deleteItem.username === deleteInputValue) {
+    elUsersDeleteButton.classList.add("right-button");
+  } else {
+    elUsersDeleteButton.classList.remove("right-button");
+  }
+});
+function deleteInputStatus() {
+  const elUsersDeleteForm = document.querySelector(".users__delete-form");
+  elDeleteInput = elUsersDeleteForm["delete-input"];
+  elDeleteCancel = elDeleteCancel["delete-cancel"];
+}
+
+elDeleteCancel.addEventListener("click", (e) => {
+  e.preventDefault();
+  const elUsersDeleteForm = document.querySelector(".users__delete-form");
+  elUsersDeleteForm.reset();
+  elUsersDeleteForm.classList.add("none");
+});
+
+function deletedF() {
+  const elUserItemsNotice = document.querySelectorAll(".users__deleted");
+  const elDeletedText = document.querySelectorAll(".users__deleted-text");
+  const elUserBox = document.querySelectorAll(".users__box");
+  elUsersItems = document.querySelectorAll(".users__items");
+
+  for (var i_2 = 0; i_2 < elUsersItems.length; i_2++) {
+    if (dataArray[i_2].deleted) {
+      elUserItemsNotice[i_2].classList.remove("none");
+      elUsersItems[i_2].classList.add("opacity");
+      elDeletedText[i_2].classList.remove("none");
+      elUserBox[i_2].classList.add("hidden");
+    }
+  }
+}
