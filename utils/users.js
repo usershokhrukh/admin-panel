@@ -10,7 +10,6 @@ const elUsersEmail = document.querySelectorAll(".users-email");
 const elUsersPhone = document.querySelectorAll(".users-phone");
 const elUsersRegister = document.querySelectorAll(".users-register");
 const elUsersUsername = document.querySelectorAll(".users-username");
-const elUsersView = document.querySelectorAll(".users-view");
 const elUsersDelete = document.querySelectorAll(".users-delete");
 const elUsersLoad = document.querySelector(".users__loader");
 const elUsersActionDot = document.querySelectorAll(".users__action-dot");
@@ -222,7 +221,6 @@ function startSearch() {
                   <div class="users__action">
                     <svg class="users__action-dot" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"/></svg>
                     <div class="users__box hidden">
-                      <button class="users__view users-view">view</button>
                       <button name="edit" class="users__view users-edit">edit</button>
                       <button class="users__view users-delete">delete</button>
                     </div>
@@ -545,7 +543,6 @@ function eventNewFormF() {
                             <div class="users__action">
                               <svg class="users__action-dot" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"/></svg>
                               <div class="users__box hidden">
-                                <button class="users__view users-view">view</button>
                                 <button name="edit" class="users__view users-edit">edit</button>
                                 <button class="users__view users-delete">delete</button>
                               </div>
