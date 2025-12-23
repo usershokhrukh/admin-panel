@@ -70,6 +70,10 @@
           <p class="dashboard__left-text">Users</p>
         </div>
         <div class="dashboard__left-boxes">
+          <svg class="dashboard__left-icons" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 2048 2048"><path fill="currentColor           " stroke="currentColor" d="m960 120l832 416v1040l-832 415l-832-415V536l832-416zm625 456L960 264L719 384l621 314l245-122zM960 888l238-118l-622-314l-241 120l625 312zM256 680v816l640 320v-816L256 680zm768 1136l640-320V680l-640 320v816z"/></svg>
+          <p class="dashboard__left-text">Products</p>
+        </div>
+        <div class="dashboard__left-boxes">
           <svg class="dashboard__left-icons" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 2048 2048"><path fill="currentColor" d="M2048 128v1024h-128V640H128v1152h896v128H0V128h384V0h128v128h1024V0h128v128h384zm-128 384V256h-256v128h-128V256H512v128H384V256H128v256h1792zm19 851l90 90l-557 558l-269-270l90-90l179 178l467-466z"/></svg>
           <p class="dashboard__left-text">Event</p>
         </div>
@@ -101,15 +105,16 @@
           <p class="dashboard__left-name dashboard__navbar-name">Shokhrukh</p>
         </div>
       </nav>
-      <section class="dashboard__main">
-        <article class="users">
-          <div class="users__top">
+      <div class="users__top">
             <h2 class="users__title">Manage users</h2>
             <p class="users__top-text"><span class="users__top-span">...</span> users </p>
             <span>
               <svg class="users__loader" width="30" fill="gray" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z"><animateTransform attributeName="transform" type="rotate" dur="0.75s" values="0 12 12;360 12 12" repeatCount="indefinite"/></path></svg>
             </span>
           </div>
+      <section class="dashboard__main">
+        <article class="users">
+          
           <div class="users__card">
             <div class="users__card-boxes users__card-boxes-first">
               <p class="users__des users__des-top">Name</p>
@@ -130,6 +135,7 @@
   <script src="./utils/dashboard.js"></script>
   <script src="./utils/rating.js"></script>
   <script src="./utils/users.js"></script>
+  <script src="./utils/products.js"></script>
   <script src="./utils/profile.js"></script>
   <script src="./utils/chat.js"></script>
   <script src="./utils/event.js"></script>

@@ -3,12 +3,15 @@ const elLeftSubText = document.querySelector(".dashboard__left-sub-text");
 const elLeftCenter = document.querySelector(".dashboard__left-center");
 const elLeftText = document.querySelectorAll(".dashboard__left-text");
 const elTop = document.querySelector(".dashboard__top");
+const elUsers = document.querySelector(".users");
 const elDashboardTitle = document.querySelector(".dashboard__title");
 const elLeftBottomText = document.querySelector(".dashboard__left-bottom-text");
 const elLeftBottomBox = document.querySelector(".dashboard__left-bottom-box");
 const elLeftBottomExit = document.querySelector(".dashboard__left-bottom-exit");
 const elLeftBoxes = document.querySelectorAll(".dashboard__left-boxes");
 const elDashLogin = document.querySelector(".login-form");
+
+elUsers.classList.remove("none");
 function arrowF() {
   elLeftSubText.classList.toggle("none");
   elLeftCenter.classList.toggle("none");
@@ -137,7 +140,7 @@ elUsersLeftBoxes[1].addEventListener("click", () => {
             <svg class="users__add" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0001 10.9999L22.0002 10.9997L22.0002 12.9997L13.0001 12.9999L13.0001 21.9998L11.0001 21.9998L11.0001 12.9999L2.00004 13.0001L2 11.0001L11.0001 10.9999L11 2.00025L13 2.00024L13.0001 10.9999Z"></path></svg>
     `;
   form();
-  
+  elUsers.classList.remove("none");
   
   elUsersTopSpan.textContent = "...";
   elUsersLoad.classList.remove("none");
