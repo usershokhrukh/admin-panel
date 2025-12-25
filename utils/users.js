@@ -195,7 +195,7 @@ function startSearch() {
           deleted,
         });
         itemsStatus();
-        elUsersTopSpan.textContent = `${id}`;
+        usersTopSpanSecond(id, "users");
         function itemsStatus() {
           elUsersItems = document.querySelectorAll(".users__items");
           elUsersLoad.classList.add("none");
@@ -608,8 +608,7 @@ function eventNewFormF() {
                         </div>
                       </div>
                 `;
-            elUsersTopSpan.textContent = `${id}`;
-
+                usersTopSpanSecond(id, "users");
             dataArray.push(responsePostObject);
             elUsersItems = document.querySelectorAll(".users__items");
             for (var i = 0; i < elUsersItems.length; i++) {

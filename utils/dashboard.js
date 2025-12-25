@@ -10,8 +10,9 @@ const elLeftBottomBox = document.querySelector(".dashboard__left-bottom-box");
 const elLeftBottomExit = document.querySelector(".dashboard__left-bottom-exit");
 const elLeftBoxes = document.querySelectorAll(".dashboard__left-boxes");
 const elDashLogin = document.querySelector(".login-form");
-
+const elProducts = document.querySelector(".products");
 elUsers.classList.remove("none");
+elProducts.classList.add("none");
 function arrowF() {
   elLeftSubText.classList.toggle("none");
   elLeftCenter.classList.toggle("none");
@@ -141,8 +142,11 @@ elUsersLeftBoxes[1].addEventListener("click", () => {
     `;
   form();
   elUsers.classList.remove("none");
-  
-  elUsersTopSpan.textContent = "...";
+  const elUsersTitle = document.querySelector(".users__title");
+  // const el
+  elProducts.classList.add("none");
+  elUsersTitle.textContent = "Manage users";
+  elUsersTopSpan.textContent = "...";  
   elUsersLoad.classList.remove("none");
   if (startStatus) {
     startStatus = false;
@@ -190,6 +194,8 @@ function navigatorF() {
 if(!navigator.onLine) {
   navigatorF();
 } 
-
+  function usersTopSpanSecond(id, text) {    
+    elUsersTopSpan.textContent = `${id} ${text}`;    
+  }
 window.addEventListener("offline", navigatorF);
 window.addEventListener("online", navigatorF);

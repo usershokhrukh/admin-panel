@@ -176,6 +176,9 @@ elLogin.addEventListener("submit", (e) => {
       localStorage.removeItem("titleStatus");
       localStorage.setItem("titleStatus", "Dashboard");
       elTitle.textContent = localStorage.getItem("titleStatus");
+      elUsers.classList.remove("none");
+      elProducts.classList.add("none");
+      elUserTitle.textContent = "Manage users";
       startSearch();
     }, 1000);
   }
@@ -226,6 +229,8 @@ function blackWhite(color) {
   const elUsersChangeFormDark = document.querySelector(".users__change-form");
   const elUsersNewFormDark = document.querySelector(".users__new-form");
   const elUsersDeleteForm = document.querySelector(".users__delete-form");
+  const elProductItems = document.querySelectorAll(".products__items");
+  const elProductText = document.querySelectorAll(".products__text");
 
   if (color) {
     elDay.classList.remove("none");
@@ -246,6 +251,15 @@ function blackWhite(color) {
       elUsersChangeFormDark.classList.add("dark-form");
       elUsersNewFormDark.classList.add("dark-form");
     }
+    if (elProductItems[0]) {
+      for(var i_3 = 0; i_3 < elProductItems.length; i_3++) {
+        elProductItems[i_3].classList.add("dark-form");
+        elProductItems[i_3].classList.add("no-shadow");
+      }
+      for(var i_3 = 0; i_3 < elProductText.length; i_3++) {
+        elProductText[i_3].classList.add("white");
+      }
+    }    
     elUsersDeleteForm.classList.add("dark-form");
   } else {
     elDay.classList.add("none");
@@ -269,6 +283,16 @@ function blackWhite(color) {
       elUsersItems[i].classList.remove("items-black");
       elUsersArrow[i].classList.remove("name-white");
     }
+   if (elProductItems[0]) {
+      for(var i_3 = 0; i_3 < elProductItems.length; i_3++) {
+        elProductItems[i_3].classList.remove("dark-form");
+        elProductItems[i_3].classList.remove("no-shadow");
+      }
 
+      for(var i_3 = 0; i_3 < elProductText.length; i_3++) {
+        elProductText[i_3].classList.remove("white");
+      }
+    }
+    
   }
 }
