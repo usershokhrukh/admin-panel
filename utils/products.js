@@ -10,7 +10,6 @@ function getProducts(pro) {
   const elProductsCard = document.querySelector(".products__card-items");
   elProductsCard.innerHTML = "";
   pro.map(({title, rating, price, image, category, id}, index) => {
-    // console.log(item);
     elProductsCard.innerHTML += `
     <div class="products__items dark-form">
                <img src="${image}" alt="">
@@ -26,7 +25,6 @@ function getProducts(pro) {
   });
 
   blackWhite(JSON.parse(localStorage.getItem("dayNight")).dayNight);
-  // console.log(JSON.parse(localStorage.getItem("dayNight")).dayNight);
   
 }
 
