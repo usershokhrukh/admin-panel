@@ -246,10 +246,11 @@ function startSearch() {
               </div>
             </div>
         `;
-        if(deleted) {
-          const elUsersActionDot = document.querySelectorAll(".users__action-dot");
-          elUsersActionDot[id-1].classList.add("none");
-        }
+          if (deleted) {
+            const elUsersActionDot =
+              document.querySelectorAll(".users__action-dot");
+            elUsersActionDot[id - 1].classList.add("none");
+          }
 
           itemsAction(elUsersItems.length);
           for (var i = 0; i < elUsersItems.length; i++) {
@@ -267,9 +268,20 @@ function startSearch() {
     deletedF();
   }
   if (!localStorage.getItem("users")) {
-    axios
-      .get("https://fakestoreapi.com/users")
-      .then((response) => innerData(response.data));
+    const getExistApi = "https://fakestoreapi.com/users";
+    try {
+      async function getExistUsers() {
+        const getExist = await axios.get(getExistApi);
+        return getExist;
+      }
+      const getExistResult = getExistUsers()
+        .then((response) => innerData(response.data))
+        .catch((error) => {
+          throw new Error(error);
+        });
+    } catch (error) {
+      throw new Error(error);
+    }
   } else if (localStorage.getItem("users")) {
     let objectDataLocal = JSON.parse(localStorage.getItem("users"));
     innerData(objectDataLocal);
@@ -339,39 +351,44 @@ function eventForm() {
                 if (errorStatusUsers && axiosStatus) {
                   errorStatusUsers = false;
                   axiosStatus = false;
-                  axios
-                    .put(
-                      `https://fakestoreapi.com/users/${dataId}`,
-                      JSON.stringify(dataArray[dataId - 1])
-                    )
-                    .then((response) => showPut(response))
-                    .catch((error) => {
-                      form();
+                  const putApi = `https://fakestoreapi.com/users/${dataId}`;
+                  try {
+                    async function putUsers() {
+                      const putUsersRequest = await axios.put(putApi);
+                      return putUsersRequest;
+                    }
+                    const putUsersResult = putUsers()
+                      .then((response) => showPut(response))
+                      .catch((error) => {
+                        form();
+                        axiosStatus = true;
+                        errorStatusUsers = true;
+                        elUsersLoad.classList.add("none");
+                        showToast("red", `Something went wrong!`);
+                      });
+                    function showPut(response) {
+                      showToast("green", "Changed!");
+                      elUsersLoad.classList.add("none");
+                      const objectPut = JSON.parse(response.config.data);
+                      const {id, email, username, password} = objectPut;
+                      for (var i = 0; i < dataArray.length; i++) {
+                        if (dataArray[i].id === id) {
+                          dataArray[i] = objectPut;
+                          elUsersLoad.classList.add("none");
+                          break;
+                        }
+                      }
+                      localStorage.setItem("users", JSON.stringify(dataArray));
+                      changeItems(id - 1, username, email);
+                      putStatus = response.status;
                       axiosStatus = true;
                       errorStatusUsers = true;
-                      elUsersLoad.classList.add("none");
-                      showToast("red", `Something went wrong!`);
-                    });
-                  function showPut(response) {
-                    showToast("green", "Changed!");
-                    elUsersLoad.classList.add("none");
-                    const objectPut = JSON.parse(response.config.data);
-                    const {id, email, username, password} = objectPut;
-                    for (var i = 0; i < dataArray.length; i++) {
-                      if (dataArray[i].id === id) {
-                        dataArray[i] = objectPut;
-                        elUsersLoad.classList.add("none");
-                        break;
-                      }
+                      showFormData(id - 1);
+                      elUsersChangeSpanId.textContent = `for- ${changeUsername}`;
+                      elUsersChangeForm.classList.add("none");
                     }
-                    localStorage.setItem("users", JSON.stringify(dataArray));
-                    changeItems(id - 1, username, email);
-                    putStatus = response.status;
-                    axiosStatus = true;
-                    errorStatusUsers = true;
-                    showFormData(id - 1);
-                    elUsersChangeSpanId.textContent = `for- ${changeUsername}`;
-                    elUsersChangeForm.classList.add("none");
+                  } catch (error) {
+                    throw new Error(error);
                   }
                 }
               } else {
@@ -441,38 +458,38 @@ function actionItemsF(index) {
   const elUsersEdit = document.querySelectorAll(".users-edit");
   const elUsersDelete = document.querySelectorAll(".users-delete");
   const elUsersActionDot = document.querySelectorAll(".users__action-dot");
-    elUsersActionDot[index].addEventListener("click", () => {
-      elUserBox[index].classList.toggle("hidden");
-      for (var i = 0; i < elUserBox.length; i++) {
-        if (index != i) {
-          elUserBox[i].classList.add("hidden");
-        }
+  elUsersActionDot[index].addEventListener("click", () => {
+    elUserBox[index].classList.toggle("hidden");
+    for (var i = 0; i < elUserBox.length; i++) {
+      if (index != i) {
+        elUserBox[i].classList.add("hidden");
       }
-    });
+    }
+  });
 
-    elUsersEdit[index].addEventListener("click", () => {
-      form();
-      const elUsersDeleteForm = document.querySelector(".users__delete-form");
-      elUsersDeleteForm.reset();
-      elUsersDeleteForm.classList.add("none");
-      const elUsersChangeSpanId = document.querySelector(
-        ".users__change-span-id"
-      );
-      const idForSpan = `${dataArray[index].username}`;
-      elUsersChangeSpanId.textContent = `for- ${idForSpan}`;
-      elUsersChangeForm.classList.remove("none");
-      showFormData(index);
-      form();
-    });
+  elUsersEdit[index].addEventListener("click", () => {
+    form();
+    const elUsersDeleteForm = document.querySelector(".users__delete-form");
+    elUsersDeleteForm.reset();
+    elUsersDeleteForm.classList.add("none");
+    const elUsersChangeSpanId = document.querySelector(
+      ".users__change-span-id"
+    );
+    const idForSpan = `${dataArray[index].username}`;
+    elUsersChangeSpanId.textContent = `for- ${idForSpan}`;
+    elUsersChangeForm.classList.remove("none");
+    showFormData(index);
+    form();
+  });
 
-    elUsersDelete[index].addEventListener("click", () => {
-      form();
-      const elUsersDeleteForm = document.querySelector(".users__delete-form");
-      elUsersDeleteForm.classList.remove("none");
-      deleteSpanChange(index);
-      deletePostItem(deleteId, dataArray[deleteId - 1].username);
-      form();
-    });
+  elUsersDelete[index].addEventListener("click", () => {
+    form();
+    const elUsersDeleteForm = document.querySelector(".users__delete-form");
+    elUsersDeleteForm.classList.remove("none");
+    deleteSpanChange(index);
+    deletePostItem(deleteId, dataArray[deleteId - 1].username);
+    form();
+  });
 }
 
 if (JSON.parse(localStorage.getItem("userStatus")).userEntered) {
@@ -608,7 +625,7 @@ function eventNewFormF() {
                         </div>
                       </div>
                 `;
-                usersTopSpanSecond(id, "users");
+            usersTopSpanSecond(id, "users");
             dataArray.push(responsePostObject);
             elUsersItems = document.querySelectorAll(".users__items");
             for (var i = 0; i < elUsersItems.length; i++) {
@@ -741,8 +758,9 @@ function deleteFormSubmitStart() {
           localStorage.setItem("users", JSON.stringify(dataArray));
           deletedF();
           deleteAxios = true;
-          const elUsersActionDot = document.querySelectorAll(".users__action-dot");
-          elUsersActionDot[deleteId-1].classList.add("none");
+          const elUsersActionDot =
+            document.querySelectorAll(".users__action-dot");
+          elUsersActionDot[deleteId - 1].classList.add("none");
           showToast("green", "Deleted!");
         }
       } else {

@@ -1,3 +1,8 @@
+/*
+async await try catch start in line 57
+
+*/
+
 const elLogin = document.querySelector(".login-form");
 const elHide = document.querySelector(".hide");
 const elShow = document.querySelector(".show");
@@ -49,63 +54,55 @@ elLogin.addEventListener("submit", (e) => {
     password: elPassword,
   };
   if (elUsername && elPassword) {
-    axios
-      .post(api, dataUser)
-      .then((response) => checkToken(response))
-      .catch((error) => {
-        if (!toast) {
-          elLoader.classList.remove("none");
-          elButtonSpan.classList.add("none");
-          setTimeout(() => {
-            elLoader.classList.add("none");
-            elButtonSpan.classList.remove("none");
-          }, 500);
-          showToast("red", "Admin not found!");
-          toast = true;
-          setTimeout(() => {
-            toast = false;
-          }, 5000);
-        }
-      });
-  } else {
-    elLoader.classList.remove("none");
-    elButtonSpan.classList.add("none");
-    setTimeout(() => {
-      elLoader.classList.add("none");
-      elButtonSpan.classList.remove("none");
-    }, 500);
-    if (!toast) {
-      showToast("red", "Fill Username and Password!");
-      toast = true;
-      setTimeout(() => {
-        toast = false;
-      }, 5000);
-    }
-  }
-
-  function checkToken(response) {
-    if (response) {
-      tokenGet(response);
-    } else {
-      if (!toast) {
-        showToast("red", "Admin not found!");
-        toast = true;
-        setTimeout(() => {
-          toast = false;
-        }, 5000);
+    // async await try catch throw
+    try {
+      async function getData() {
+        const request = await axios.post(api, dataUser);
+        return request;
       }
-    }
-  }
+      const result = getData()
+        .then((data) => {
+          checkToken(data);
+        })
+        .catch((error) => {
+          if (!toast) {
+            elLoader.classList.remove("none");
+            elButtonSpan.classList.add("none");
+            setTimeout(() => {
+              elLoader.classList.add("none");
+              elButtonSpan.classList.remove("none");
+            }, 500);
+            showToast("red", "Admin not found!");
+            toast = true;
+            setTimeout(() => {
+              toast = false;
+            }, 5000);
+          }
+        });
 
-  function tokenGet(response) {
-    elLoader.classList.remove("none");
-    elButtonSpan.classList.add("none");
-    setTimeout(() => {
-      elLoader.classList.add("none");
-      elButtonSpan.classList.remove("none");
-    }, 500);
-    elUsersCard = document.querySelector(".users__card");
-    elUsersCard.innerHTML = `
+      function checkToken(response) {
+        if (response) {
+          tokenGet(response);
+        } else {
+          if (!toast) {
+            showToast("red", "Admin not found!");
+            toast = true;
+            setTimeout(() => {
+              toast = false;
+            }, 5000);
+          }
+        }
+      }
+
+      function tokenGet(response) {
+        elLoader.classList.remove("none");
+        elButtonSpan.classList.add("none");
+        setTimeout(() => {
+          elLoader.classList.add("none");
+          elButtonSpan.classList.remove("none");
+        }, 500);
+        elUsersCard = document.querySelector(".users__card");
+        elUsersCard.innerHTML = `
       <div class="users__card-boxes users__card-boxes-first">
               <p class="users__des users__des-top">Name</p>
               <p class="users__des users__des-top">Email</p>
@@ -160,27 +157,45 @@ elLogin.addEventListener("submit", (e) => {
             </div>
             <svg class="users__add" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0001 10.9999L22.0002 10.9997L22.0002 12.9997L13.0001 12.9999L13.0001 21.9998L11.0001 21.9998L11.0001 12.9999L2.00004 13.0001L2 11.0001L11.0001 10.9999L11 2.00025L13 2.00024L13.0001 10.9999Z"></path></svg>
     `;
-    dataUser.userEntered = true;
-    const jsonAdmin = JSON.stringify(dataUser);
-    localStorage.setItem("jsonAdmin", jsonAdmin);
+        dataUser.userEntered = true;
+        const jsonAdmin = JSON.stringify(dataUser);
+        localStorage.setItem("jsonAdmin", jsonAdmin);
+        setTimeout(() => {
+          elLogin.classList.add("none");
+          showToast("green", "Success!");
+          elDashboard.classList.remove("none");
+          const userStorage = JSON.parse(localStorage.getItem("userStatus"));
+          userStorage.userEntered = true;
+          localStorage.removeItem("userStatus");
+          localStorage.setItem("userStatus", JSON.stringify(userStorage));
+          const dayNightStatus = JSON.parse(localStorage.getItem("dayNight"));
+          blackWhite(dayNightStatus.dayNight);
+          localStorage.removeItem("titleStatus");
+          localStorage.setItem("titleStatus", "Dashboard");
+          elTitle.textContent = localStorage.getItem("titleStatus");
+          elUsers.classList.remove("none");
+          elProducts.classList.add("none");
+          elUserTitle.textContent = "Manage users";
+          startSearch();
+        }, 1000);
+      }
+    } catch (error) {
+      throw new Error(error)  
+    }
+  } else {
+    elLoader.classList.remove("none");
+    elButtonSpan.classList.add("none");
     setTimeout(() => {
-      elLogin.classList.add("none");
-      showToast("green", "Success!");
-      elDashboard.classList.remove("none");
-      const userStorage = JSON.parse(localStorage.getItem("userStatus"));
-      userStorage.userEntered = true;
-      localStorage.removeItem("userStatus");
-      localStorage.setItem("userStatus", JSON.stringify(userStorage));
-      const dayNightStatus = JSON.parse(localStorage.getItem("dayNight"));
-      blackWhite(dayNightStatus.dayNight);
-      localStorage.removeItem("titleStatus");
-      localStorage.setItem("titleStatus", "Dashboard");
-      elTitle.textContent = localStorage.getItem("titleStatus");
-      elUsers.classList.remove("none");
-      elProducts.classList.add("none");
-      elUserTitle.textContent = "Manage users";
-      startSearch();
-    }, 1000);
+      elLoader.classList.add("none");
+      elButtonSpan.classList.remove("none");
+    }, 500);
+    if (!toast) {
+      showToast("red", "Fill Username and Password!");
+      toast = true;
+      setTimeout(() => {
+        toast = false;
+      }, 5000);
+    }
   }
 });
 const elLoginBody = document.querySelector("body");
@@ -252,14 +267,14 @@ function blackWhite(color) {
       elUsersNewFormDark.classList.add("dark-form");
     }
     if (elProductItems[0]) {
-      for(var i_3 = 0; i_3 < elProductItems.length; i_3++) {
+      for (var i_3 = 0; i_3 < elProductItems.length; i_3++) {
         elProductItems[i_3].classList.add("dark-form");
         elProductItems[i_3].classList.add("no-shadow");
       }
-      for(var i_3 = 0; i_3 < elProductText.length; i_3++) {
+      for (var i_3 = 0; i_3 < elProductText.length; i_3++) {
         elProductText[i_3].classList.add("white");
       }
-    }    
+    }
     elUsersDeleteForm.classList.add("dark-form");
   } else {
     elDay.classList.add("none");
@@ -283,16 +298,15 @@ function blackWhite(color) {
       elUsersItems[i].classList.remove("items-black");
       elUsersArrow[i].classList.remove("name-white");
     }
-   if (elProductItems[0]) {
-      for(var i_3 = 0; i_3 < elProductItems.length; i_3++) {
+    if (elProductItems[0]) {
+      for (var i_3 = 0; i_3 < elProductItems.length; i_3++) {
         elProductItems[i_3].classList.remove("dark-form");
         elProductItems[i_3].classList.remove("no-shadow");
       }
 
-      for(var i_3 = 0; i_3 < elProductText.length; i_3++) {
+      for (var i_3 = 0; i_3 < elProductText.length; i_3++) {
         elProductText[i_3].classList.remove("white");
       }
     }
-    
   }
 }

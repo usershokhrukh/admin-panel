@@ -1,3 +1,7 @@
+/**
+
+*/
+
 elUsersLeftBoxes[2].addEventListener("click", () => {
   elUsers.classList.add("none");
   elProducts.classList.remove("none");
@@ -29,7 +33,18 @@ function getProducts(pro) {
 }
 
 function getAxios() {
-  axios
-    .get("https://fakestoreapi.com/products")
-    .then((response) => getProducts(response.data));
+  const getProductsApi = "https://fakestoreapi.com/products";
+  try{
+    async function getProductsFunction() {
+      const getProductsRequest = await axios.get(getProductsApi);
+      return getProductsRequest;
+    }
+    const getProductsResult = getProductsFunction().then(response => {
+      getProducts(response.data);
+    }).catch(error => {
+      throw new Error(error)
+    })
+  }catch(error) {
+    throw new Error(error)
+  }
 }
