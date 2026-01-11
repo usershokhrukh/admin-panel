@@ -559,13 +559,20 @@ function eventNewFormF() {
               showToast("red", "Try again!");
             }
           }, 3000);
-          axios
-            .post(postApi, postObject)
-            .then((response) => postGetF(response))
-            .catch((error) => {
-              elUsersLoad.classList.add("none");
-              showToast("red", "Something went wrong!");
-            });
+          try {
+            async function postFunctionAsy() {
+              const postRequest = await axios.post(postApi, postObject);
+              return postRequest;
+            }
+            const postGetData = postFunctionAsy()
+              .then((response) => postGetF(response))
+              .catch((error) => {
+                elUsersLoad.classList.add("none");
+                showToast("red", "Something went wrong!");
+              });
+          } catch (error) {
+            throw new Error(error);
+          }
 
           function postGetF(response) {
             postGetStatus = true;
@@ -734,34 +741,42 @@ function deleteFormSubmitStart() {
       if (elDeleteInput.value === deleteItem.username) {
         deleteAxios = false;
         showToast("red", "Wait!");
-        axios
-          .delete(`https://fakestoreapi.com/users/${deleteId}`)
-          .then((response) => deletedGreen())
-          .catch((error) => {
+        const deleteApi = `https://fakestoreapi.com/users/${deleteId}`;
+        try {
+          async function deleteUsers() {
+            const deleteRequest = await axios.delete(deleteApi);
+            return deleteRequest;
+          }
+          const getDeleteResult = deleteUsers()
+            .then((response) => deletedGreen())
+            .catch((error) => {
+              const elUsersDeleteForm = document.querySelector(
+                ".users__delete-form"
+              );
+              elUsersDeleteForm.reset();
+              elUsersDeleteForm.classList.add("none");
+
+              deleteAxios = true;
+              showToast("red", "Something went wrong!");
+            });
+
+          function deletedGreen() {
             const elUsersDeleteForm = document.querySelector(
               ".users__delete-form"
             );
             elUsersDeleteForm.reset();
             elUsersDeleteForm.classList.add("none");
-
+            dataArray[deleteId - 1].deleted = true;
+            localStorage.setItem("users", JSON.stringify(dataArray));
+            deletedF();
             deleteAxios = true;
-            showToast("red", "Something went wrong!");
-          });
-
-        function deletedGreen() {
-          const elUsersDeleteForm = document.querySelector(
-            ".users__delete-form"
-          );
-          elUsersDeleteForm.reset();
-          elUsersDeleteForm.classList.add("none");
-          dataArray[deleteId - 1].deleted = true;
-          localStorage.setItem("users", JSON.stringify(dataArray));
-          deletedF();
-          deleteAxios = true;
-          const elUsersActionDot =
-            document.querySelectorAll(".users__action-dot");
-          elUsersActionDot[deleteId - 1].classList.add("none");
-          showToast("green", "Deleted!");
+            const elUsersActionDot =
+              document.querySelectorAll(".users__action-dot");
+            elUsersActionDot[deleteId - 1].classList.add("none");
+            showToast("green", "Deleted!");
+          }
+        } catch (error) {
+          throw new Error(error);
         }
       } else {
         showToast("red", "For delete enter right username!");
